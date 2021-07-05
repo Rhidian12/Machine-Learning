@@ -4,6 +4,7 @@
 
 #include <stdint.h>
 
+class Texture;
 class Node final
 {
 public:
@@ -15,4 +16,6 @@ private:
 	MathUtils::Point2f m_Position;
 	MathUtils::RGBColour m_Colour;
 	uint32_t m_Index;
+
+	Texture* m_pTexture;
 };
