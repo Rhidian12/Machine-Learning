@@ -7,6 +7,7 @@ class Texture final
 {
 public:
 	Texture(const std::string& path);
+	~Texture();
 
 private:
 	SDL_Texture* m_pTexture;
