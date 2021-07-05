@@ -4,12 +4,7 @@
 
 #include <SDL.h>
 
-Renderer::Renderer::Renderer()
-{
-    Utils::Assert(m_pSDLRenderer != nullptr, "Renderer::GetInstance()> First call Renderer::CreateRenderer()!");
-}
-
-Renderer::Renderer::~Renderer()
+Renderer::~Renderer()
 {
     SDL_DestroyRenderer(m_pSDLRenderer);
 }
@@ -21,7 +16,7 @@ void Renderer::Renderer::CreateRenderer(SDL_Window* const pWindow) noexcept
     m_pSDLRenderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
 }
 
-Renderer::Renderer* Renderer::Renderer::GetInstance() noexcept
+Renderer* Renderer::Renderer::GetInstance() noexcept
 {
     if (!m_pInstance)
         m_pInstance = new Renderer{};
