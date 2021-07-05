@@ -70,8 +70,6 @@ int main(int, char* [])
 
 	pRenderer->CreateRenderer(pWindow);
 
-	Texture* pTexture{ new Texture{"Data/bonk.png"} };
-
 	bool doContinue{ true };
 	while (doContinue)
 	{
@@ -89,14 +87,10 @@ int main(int, char* [])
 			}
 		}
 
-		//pRenderer->ClearRenderer();
-
-		pRenderer->Render(pTexture, MathUtils::Point2f{});
+		pRenderer->ClearRenderer();
 
 		pRenderer->Present();
 	}
-
-	delete pTexture;
 
 	pRenderer->Cleanup();
 
