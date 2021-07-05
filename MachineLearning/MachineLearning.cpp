@@ -10,26 +10,42 @@
 
 TEST_CASE("Test FMatrix")
 {
-	FMatrix matrix{ 4,4 };
+	FMatrix originalMatrix{ 4,4 };
 
-	const uint32_t nrOfRows{ matrix.GetNumberOfRows() };
-	const uint32_t nrOfCols{ matrix.GetNumberOfColumns() };
+	const uint32_t nrOfRows{ originalMatrix.GetNumberOfRows() };
+	const uint32_t nrOfCols{ originalMatrix.GetNumberOfColumns() };
 
 	REQUIRE(nrOfRows == 4);
 	REQUIRE(nrOfCols == 4);
 
 	for (uint32_t r{}; r < nrOfRows; ++r)
 		for (uint32_t c{}; c < nrOfCols; ++c)
-			REQUIRE(matrix.Get(r, c) == 0.f);
+			REQUIRE(originalMatrix.Get(r, c) == 0.f);
 
-	matrix.Set(2, 2, 15.f);
-	REQUIRE(matrix.Get(2, 2) == 15.f);
+	originalMatrix.Set(2, 2, 15.f);
+	REQUIRE(originalMatrix.Get(2, 2) == 15.f);
 
-	matrix.SetAll(42.f);
+	originalMatrix.SetAll(42.f);
 	for (uint32_t r{}; r < nrOfRows; ++r)
 		for (uint32_t c{}; c < nrOfCols; ++c)
-			REQUIRE(matrix.Get(r, c) == 42.f);
+			REQUIRE(originalMatrix.Get(r, c) == 42.f);
+
+	FMatrix copyConstructorMatrix{ originalMatrix };
+	REQUIRE(originalMatrix == copyConstructorMatrix);
+	REQUIRE_FALSE(originalMatrix != copyConstructorMatrix);
+
+	FMatrix moveConstructorMatrix{ std::move(copyConstructorMatrix) };
+	REQUIRE(originalMatrix == moveConstructorMatrix);
+	REQUIRE(copyConstructorMatrix.GetNumberOfRows() == 0);
+
+	FMatrix copyOperatorMatrix{ originalMatrix };
+	REQUIRE(originalMatrix == copyOperatorMatrix);
+
+	FMatrix moveOperatorMatrix{ std::move(copyOperatorMatrix) };
+	REQUIRE(originalMatrix == moveOperatorMatrix);
+	REQUIRE(copyOperatorMatrix.GetNumberOfRows() == 0);
 }
+
 //int main()
 //{
 //	FMatrix matrix{ 4,4 };
