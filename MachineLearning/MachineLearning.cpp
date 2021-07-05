@@ -55,13 +55,50 @@ TEST_CASE("Test FMatrix")
 #include <SDL_video.h>
 #include <GL\GLU.h>
 
+#include "Texture/Texture.h"	
+#include "Renderer/Renderer.h"
+
+#include <vld.h>
+
 SDL_Window* InitSDL();
 
-int main(int, char*[])
+int main(int, char* [])
 {
-	InitSDL();
+	SDL_Window* const pWindow = InitSDL();
 
+	Renderer* pRenderer{ Renderer::GetInstance() };
 
+	pRenderer->CreateRenderer(pWindow);
+
+	Texture* pTexture{ new Texture{"Data/bonk.png"} };
+
+	bool doContinue{ true };
+	while (doContinue)
+	{
+		SDL_Event e;
+
+		while (SDL_PollEvent(&e))
+		{
+			switch (e.type)
+			{
+			case SDL_QUIT:
+				doContinue = false;
+				break;
+			default:
+				break;
+			}
+		}
+
+		//pRenderer->ClearRenderer();
+
+		pRenderer->Render(pTexture, MathUtils::Point2f{});
+
+		pRenderer->Present();
+	}
+
+	delete pTexture;
+
+	pRenderer->Cleanup();
 
 	return 0;
 }
@@ -79,7 +116,7 @@ SDL_Window* InitSDL()
 	}
 
 	SDL_Window* pWindow = SDL_CreateWindow(
-		"Programming 4 Assignment - Rhidian De Wit",
+		"Machine Learning - Rhidian De Wit",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		width, height,
