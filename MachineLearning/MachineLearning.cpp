@@ -5,18 +5,43 @@
 
 #include "FMatrix/FMatrix.h"
 
-int main()
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
+
+TEST_CASE("Test FMatrix")
 {
 	FMatrix matrix{ 4,4 };
 
-	matrix.Print();
+	const uint32_t nrOfRows{ matrix.GetNumberOfRows() };
+	const uint32_t nrOfCols{ matrix.GetNumberOfColumns() };
 
-	matrix.Set(0, 0, 10.f);
+	REQUIRE(nrOfRows == 4);
+	REQUIRE(nrOfCols == 4);
 
-	matrix.Print();
+	for (uint32_t r{}; r < nrOfRows; ++r)
+		for (uint32_t c{}; c < nrOfCols; ++c)
+			REQUIRE(matrix.Get(r, c) == 0.f);
 
-	return 0;
+	matrix.Set(2, 2, 15.f);
+	REQUIRE(matrix.Get(2, 2) == 15.f);
+
+	matrix.SetAll(42.f);
+	for (uint32_t r{}; r < nrOfRows; ++r)
+		for (uint32_t c{}; c < nrOfCols; ++c)
+			REQUIRE(matrix.Get(r, c) == 42.f);
 }
+//int main()
+//{
+//	FMatrix matrix{ 4,4 };
+//
+//	matrix.Print();
+//
+//	matrix.Set(0, 0, 10.f);
+//
+//	matrix.Print();
+//
+//	return 0;
+//}
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
