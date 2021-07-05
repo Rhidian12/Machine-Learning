@@ -145,10 +145,12 @@
   <ItemGroup>
     <ClCompile Include="FMatrix\FMatrix.cpp" />
     <ClCompile Include="MachineLearning.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FMatrix\FMatrix.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
