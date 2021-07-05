@@ -9,6 +9,8 @@ public:
 	Texture(const std::string& path);
 	~Texture();
 
+	SDL_Texture* const GetSDLTexture() const noexcept;
+
 private:
 	SDL_Texture* m_pTexture;
 };

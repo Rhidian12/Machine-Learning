@@ -16,3 +16,8 @@ Texture::~Texture()
 {
 	SDL_DestroyTexture(m_pTexture);
 }
+
+SDL_Texture* const Texture::GetSDLTexture() const noexcept
+{
+	return m_pTexture;
+}
