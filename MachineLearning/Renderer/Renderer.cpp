@@ -14,6 +14,8 @@ void Renderer::Renderer::CreateRenderer(SDL_Window* const pWindow) noexcept
     Utils::Assert(m_pSDLRenderer == nullptr, "Renderer::CreateRenderer() > Only call this function once!");
 
     m_pSDLRenderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
+
+    Utils::Assert(m_pSDLRenderer != nullptr, SDL_GetError());
 }
 
 Renderer* Renderer::Renderer::GetInstance() noexcept
