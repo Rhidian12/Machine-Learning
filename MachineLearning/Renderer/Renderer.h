@@ -15,6 +15,8 @@ namespace Renderer
 		void CreateRenderer(SDL_Window* const pWindow) noexcept;
 		void Render();
 
+		SDL_Renderer* const GetSDLRenderer() const noexcept;
+
 	private:
 		Renderer() = default;
 

@@ -30,3 +30,8 @@ void Renderer::Renderer::Render()
 {
 
 }
+
+SDL_Renderer* const Renderer::Renderer::GetSDLRenderer() const noexcept
+{
+    return m_pSDLRenderer;
+}
