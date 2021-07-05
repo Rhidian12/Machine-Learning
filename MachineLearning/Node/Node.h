@@ -11,6 +11,11 @@ public:
 	Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index);
 	~Node();
 
+	Node(const Node& other) noexcept;
+	Node(Node&& other) noexcept;
+	Node& operator=(const Node& other) noexcept;
+	Node& operator=(Node&& other) noexcept;
+
 	void Render() const noexcept;
 
 private:
