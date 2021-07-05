@@ -7,7 +7,11 @@
 
 int main()
 {
-	const FMatrix matrix{ 4,4 };
+	FMatrix matrix{ 4,4 };
+
+	matrix.Print();
+
+	matrix.Set(0, 0, 10.f);
 
 	matrix.Print();
 
