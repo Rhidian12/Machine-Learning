@@ -67,6 +67,16 @@ void FMatrix::SetAll(const float value) noexcept
 			element = value;
 }
 
+const uint32_t&& FMatrix::GetNumberOfRows() const noexcept
+{
+	return std::move(m_Data.size());
+}
+
+const uint32_t&& FMatrix::GetNumberOfColumns() const noexcept
+{
+	return std::move(m_Data[0].size());
+}
+
 void FMatrix::Print() const noexcept
 {
 	std::cout << std::fixed << std::setprecision(1);

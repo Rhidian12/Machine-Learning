@@ -17,6 +17,9 @@ public:
 
 	void SetAll(const float value) noexcept;
 
+	const uint32_t&& GetNumberOfRows() const noexcept;
+	const uint32_t&& GetNumberOfColumns() const noexcept;
+
 	void Print() const noexcept;
 
 private:
