@@ -40,13 +40,13 @@ void Renderer::Renderer::ClearRenderer() noexcept
     SDL_RenderClear(m_pSDLRenderer);
 }
 
-void Renderer::Renderer::Render(Texture* pTexture, const MathUtils::Point2f& position)
+void Renderer::Renderer::Render(Texture* pTexture, const MathUtils::Point2f& position) noexcept
 {
     Utils::Assert(m_pSDLRenderer != nullptr, "Renderer::Render() > Renderer::CreateRenderer() has not been called!");
 
     SDL_Rect destRect{};
-    destRect.x = position.x;
-    destRect.y = position.y;
+    destRect.x = int(position.x);
+    destRect.y = int(position.y);
     SDL_RenderCopy(m_pSDLRenderer, pTexture->GetSDLTexture(), nullptr, &destRect);
 }
 
