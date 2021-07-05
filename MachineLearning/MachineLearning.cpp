@@ -3,9 +3,15 @@
 
 #include <iostream>
 
+#include "FMatrix/FMatrix.h"
+
 int main()
 {
-    std::cout << "Hello World!\n";
+	const FMatrix matrix{ 4,4 };
+
+	matrix.Print();
+
+	return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
