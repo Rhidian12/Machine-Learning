@@ -22,6 +22,9 @@ public:
 
 	void Print() const noexcept;
 
+	const bool operator==(const FMatrix& other) const noexcept;
+	const bool operator!=(const FMatrix& other) const noexcept;
+
 private:
 	std::vector<std::vector<float>> m_Data;
 };

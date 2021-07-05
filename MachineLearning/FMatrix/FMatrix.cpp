@@ -88,3 +88,18 @@ void FMatrix::Print() const noexcept
 		std::cout << std::endl;
 	}
 }
+
+const bool FMatrix::operator==(const FMatrix& other) const noexcept
+{
+	for (size_t r{}; r < m_Data.size(); ++r)
+		for (size_t c{}; c < m_Data[r].size(); ++c)
+			if (m_Data[r][c] != other.m_Data[r][c])
+				return false;
+
+	return true;
+}
+
+const bool FMatrix::operator!=(const FMatrix& other) const noexcept
+{
+	return !(*this == other);
+}
