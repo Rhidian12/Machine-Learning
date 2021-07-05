@@ -2,6 +2,7 @@
 
 struct SDL_Renderer;
 struct SDL_Window;
+class Texture;
 namespace Renderer
 {
 	class Renderer final
@@ -18,7 +19,7 @@ namespace Renderer
 		SDL_Renderer* const GetSDLRenderer() const noexcept;
 
 	private:
-		Renderer() = default;
+		Renderer();
 
 		inline static Renderer* m_pInstance{};
 		SDL_Renderer* m_pSDLRenderer{};
