@@ -98,6 +98,7 @@
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)SDL2_image-2.0.5\include\;$(SolutionDir)SDL2_mixer-2.0.4\include\;$(SolutionDir)SDL2_ttf-2.0.15\include\;$(SolutionDir)SDL2-2.0.14\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,6 +123,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)SDL2_image-2.0.5\include\;$(SolutionDir)SDL2_mixer-2.0.4\include\;$(SolutionDir)SDL2_ttf-2.0.15\include\;$(SolutionDir)SDL2-2.0.14\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +148,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)SDL2_image-2.0.5\include\;$(SolutionDir)SDL2_mixer-2.0.4\include\;$(SolutionDir)SDL2_ttf-2.0.15\include\;$(SolutionDir)SDL2-2.0.14\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -170,6 +173,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)SDL2_image-2.0.5\include\;$(SolutionDir)SDL2_mixer-2.0.4\include\;$(SolutionDir)SDL2_ttf-2.0.15\include\;$(SolutionDir)SDL2-2.0.14\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -191,6 +195,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     <ClCompile Include="MachineLearning.cpp" />
     <ClCompile Include="Math\MathUtils.cpp" />
     <ClCompile Include="Node\Node.cpp" />
+    <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +203,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     <ClInclude Include="FMatrix\FMatrix.h" />
     <ClInclude Include="Math\MathUtils.h" />
     <ClInclude Include="Node\Node.h" />
+    <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
