@@ -5,7 +5,10 @@
 
 namespace Utils
 {
+#ifdef _DEBUG
 	void Assert(const bool expression, std::string&& message);
-
+#else
+	void Assert(const bool expression, std::string&& message);
+#endif
 	void DrawCircle(const MathUtils::Point2f& position, const int radius, const MathUtils::RGBColour& colour) noexcept;
 }
