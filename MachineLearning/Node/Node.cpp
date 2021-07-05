@@ -12,6 +12,11 @@ Node::Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const u
 	m_pTexture = new Texture{ "../Data/Oswald-Light.ttf", std::to_string(index), 5, m_Colour };
 }
 
+Node::~Node()
+{
+	Utils::SafeDelete(m_pTexture);
+}
+
 void Node::Render() const noexcept
 {
 	Utils::DrawCircle(m_Position, 10, m_Colour);

@@ -9,6 +9,7 @@ class Node final
 {
 public:
 	Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index);
+	~Node();
 
 	void Render() const noexcept;
 
