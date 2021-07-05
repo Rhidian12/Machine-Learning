@@ -16,6 +16,7 @@ namespace Utils
 
 	void DrawCircle(const MathUtils::Point2f& position, const int radius, const MathUtils::RGBColour& colour) noexcept
 	{
+		glColor4f(colour.r, colour.g, colour.b, colour.a);
 		glBegin(GL_LINES);
 		{
 			for (int angle{}; angle < 360; ++angle)
