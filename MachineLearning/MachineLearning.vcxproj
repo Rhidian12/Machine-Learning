@@ -189,12 +189,14 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
   <ItemGroup>
     <ClCompile Include="FMatrix\FMatrix.cpp" />
     <ClCompile Include="MachineLearning.cpp" />
+    <ClCompile Include="Math\MathUtils.cpp" />
     <ClCompile Include="Node\Node.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="catch.hpp" />
     <ClInclude Include="FMatrix\FMatrix.h" />
+    <ClInclude Include="Math\MathUtils.h" />
     <ClInclude Include="Node\Node.h" />
     <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
