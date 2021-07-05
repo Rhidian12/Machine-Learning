@@ -1,8 +1,8 @@
 #include "FMatrix.h"
 #include "../Utils/Utils.h"
 
-#include <iostream>
-#include <iomanip>
+#include <iostream> // std::cout
+#include <iomanip> // std::fixed, std::setprecision
 
 FMatrix::FMatrix(const uint32_t rows, const uint32_t cols, const float initValue)
 	: m_Data{}
