@@ -26,4 +26,7 @@ private:
 
 	inline static Renderer* m_pInstance{};
 	SDL_Renderer* m_pSDLRenderer{};
+
+	int m_WindowWidth{};
+	int m_WindowHeight{};
 };
