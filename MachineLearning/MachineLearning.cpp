@@ -90,7 +90,7 @@ int main(int, char* [])
 			}
 		}
 
-		pRenderer->ClearRenderer();
+		pRenderer->ClearRenderer(MathUtils::RGBColour{192.f, 192.f, 192.f});
 
 		scene.Render();
 
