@@ -15,7 +15,7 @@ public:
 	static void Cleanup() noexcept;
 	void CreateRenderer(SDL_Window* const pWindow) noexcept;
 
-	void ClearRenderer() noexcept;
+	void ClearRenderer(const MathUtils::RGBColour& clearColour) noexcept;
 	void Render(Texture* pTexture, const MathUtils::Point2f& position) noexcept;
 	void Present() noexcept;
 

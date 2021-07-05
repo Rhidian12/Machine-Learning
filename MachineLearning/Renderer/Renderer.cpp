@@ -35,9 +35,11 @@ void Renderer::Cleanup() noexcept
     m_pInstance = nullptr;
 }
 
-void Renderer::ClearRenderer() noexcept
+void Renderer::ClearRenderer(const MathUtils::RGBColour& clearColour) noexcept
 {
     SDL_RenderClear(m_pSDLRenderer);
+    SDL_SetRenderDrawColor(m_pSDLRenderer, Uint8(clearColour.r), Uint8(clearColour.g), Uint8(clearColour.b), Uint8(clearColour.a));
+    SDL_RenderFillRect(m_pSDLRenderer, nullptr);
 }
 
 void Renderer::Render(Texture* pTexture, const MathUtils::Point2f& position) noexcept
@@ -57,7 +59,6 @@ void Renderer::Present() noexcept
 {
     Utils::Assert(m_pSDLRenderer != nullptr, "Renderer::Present() > Renderer::CreateRenderer() has not been called!");
    
-    //Utils::Assert(SDL_RenderPresent(m_pSDLRenderer) == 0, SDL_GetError());
     SDL_RenderPresent(m_pSDLRenderer);
 }
 
