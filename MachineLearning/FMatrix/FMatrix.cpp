@@ -60,6 +60,13 @@ const float FMatrix::Get(const uint32_t row, const uint32_t col) const noexcept
 	return m_Data[row][col];
 }
 
+void FMatrix::SetAll(const float value) noexcept
+{
+	for (std::vector<float>& array : m_Data)
+		for (float& element : array)
+			element = value;
+}
+
 void FMatrix::Print() const noexcept
 {
 	std::cout << std::fixed << std::setprecision(1);
