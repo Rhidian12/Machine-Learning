@@ -22,6 +22,30 @@ FMatrix::FMatrix(const uint32_t rows, const uint32_t cols, const float initValue
 			array.push_back(initValue);
 }
 
+FMatrix::FMatrix(const FMatrix& other) noexcept
+	: m_Data{ other.m_Data }
+{
+}
+
+FMatrix::FMatrix(FMatrix&& other) noexcept
+	: m_Data{ std::move(other.m_Data) }
+{
+	other.m_Data.clear();
+}
+
+FMatrix& FMatrix::operator=(const FMatrix& other) noexcept
+{
+	m_Data = other.m_Data;
+	return *this;
+}
+
+FMatrix& FMatrix::operator=(FMatrix&& other) noexcept
+{
+	m_Data = std::move(other.m_Data);
+	other.m_Data.clear();
+	return *this;
+}
+
 void FMatrix::Print() const noexcept
 {
 	std::cout << std::fixed << std::setprecision(1);
