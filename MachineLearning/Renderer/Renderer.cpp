@@ -1,11 +1,12 @@
 #include "Renderer.h"
 #include "../Utils/Utils.h"
+#include "../Texture/Texture.h"
 
 #include <SDL.h>
 
 Renderer::Renderer::Renderer()
 {
-    Utils::Assert(m_pSDLRenderer != nullptr, "First call Renderer::CreateRenderer() before calling Renderer::GetInstance()!");
+    Utils::Assert(m_pSDLRenderer != nullptr, "Renderer::GetInstance()> First call Renderer::CreateRenderer()!");
 }
 
 Renderer::Renderer::~Renderer()
@@ -15,6 +16,8 @@ Renderer::Renderer::~Renderer()
 
 void Renderer::Renderer::CreateRenderer(SDL_Window* const pWindow) noexcept
 {
+    Utils::Assert(m_pSDLRenderer == nullptr, "Renderer::CreateRenderer() > Only call this function once!");
+
     m_pSDLRenderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
 }
 
@@ -32,9 +35,25 @@ void Renderer::Renderer::Cleanup() noexcept
     m_pInstance = nullptr;
 }
 
-void Renderer::Renderer::Render()
+void Renderer::Renderer::ClearRenderer() noexcept
 {
+    SDL_RenderClear(m_pSDLRenderer);
+}
 
+void Renderer::Renderer::Render(Texture* pTexture, const MathUtils::Point2f& position)
+{
+    Utils::Assert(m_pSDLRenderer != nullptr, "Renderer::Render() > Renderer::CreateRenderer() has not been called!");
+
+    SDL_Rect destRect{};
+    destRect.x = position.x;
+    destRect.y = position.y;
+    SDL_RenderCopy(m_pSDLRenderer, pTexture->GetSDLTexture(), nullptr, &destRect);
+}
+
+void Renderer::Renderer::Present() noexcept
+{
+    Utils::Assert(m_pSDLRenderer != nullptr, "Renderer::Present() > Renderer::CreateRenderer() has not been called!");
+    SDL_RenderPresent(m_pSDLRenderer);
 }
 
 SDL_Renderer* const Renderer::Renderer::GetSDLRenderer() const noexcept
