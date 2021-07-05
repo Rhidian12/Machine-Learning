@@ -1,9 +1,8 @@
-// MachineLearning.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 
 #include "FMatrix/FMatrix.h"
+
+#ifdef UNIT_TESTS
 
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
@@ -46,26 +45,107 @@ TEST_CASE("Test FMatrix")
 	REQUIRE(copyOperatorMatrix.GetNumberOfRows() == 0);
 }
 
-//int main()
-//{
-//	FMatrix matrix{ 4,4 };
-//
-//	matrix.Print();
-//
-//	matrix.Set(0, 0, 10.f);
-//
-//	matrix.Print();
-//
-//	return 0;
-//}
+#else
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+#include <SDL.h>
+#include <SDL_opengl.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <SDL_mixer.h>
+#include <SDL_video.h>
+#include <GL\GLU.h>
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+SDL_Window* InitSDL();
+
+int main(int, char*[])
+{
+	InitSDL();
+
+
+
+	return 0;
+}
+
+SDL_Window* InitSDL()
+{
+	uint32_t width = 640;
+	uint32_t height = 480;
+
+#pragma region SDL Stuff
+	//Create window + surfaces
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_AUDIO) == -1)
+	{
+		std::cout << SDL_GetError() << std::endl;
+	}
+
+	SDL_Window* pWindow = SDL_CreateWindow(
+		"Programming 4 Assignment - Rhidian De Wit",
+		SDL_WINDOWPOS_CENTERED,
+		SDL_WINDOWPOS_CENTERED,
+		width, height,
+		SDL_WINDOW_OPENGL);
+
+	if (!pWindow)
+	{
+		std::cerr << "Error: m_pWindow failed in App::Initialize()\n";
+		return nullptr;
+	}
+
+	SDL_GLContext context = SDL_GL_CreateContext(pWindow);
+	if (context == nullptr)
+		std::cerr << "App::Initialize() CreateContext() failed\n";
+
+	if (SDL_GL_SetSwapInterval(1) < 0)
+	{
+		std::cerr << "App::Initialize() error when calling SDL_GL_SetSwapInterval " << SDL_GetError() << std::endl;
+		return nullptr;
+	}
+
+	// Set the Projection matrix to the identity matrix
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	// Set up a two-dimensional orthographic viewing region.
+	gluOrtho2D(0, width, 0, height); // y from bottom to top
+
+	// Set the viewport to the client window area
+	// The viewport is the rectangu	lar region of the window where the image is drawn.
+	glViewport(0, 0, width, height);
+
+	// Set the Modelview matrix to the identity matrix
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	// Enable color blending and use alpha blending
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	//Initialize PNG loading
+	const int pngFlags{ IMG_INIT_PNG };
+	const int jpgFlags{ IMG_INIT_JPG };
+	if (!(IMG_Init(pngFlags) & pngFlags) || !(IMG_Init(jpgFlags) & jpgFlags))
+		std::cerr << "SDL_image could not initialize! SDL_image Error: %s\n";
+
+	if (TTF_Init() != 0)
+		std::cerr << SDL_GetError() << std::endl;
+
+	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 4, 2048) == -1)
+	{
+		std::cout << Mix_GetError() << std::endl;;
+	}
+	const int mixerFlags{ MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG };
+	if ((Mix_Init(mixerFlags) & mixerFlags) != mixerFlags)
+	{
+		std::cout << Mix_GetError() << std::endl;
+	}
+#pragma endregion
+
+	// == Seed rand() ==
+	srand(static_cast<unsigned int>(time(nullptr)));
+
+	std::cout << "Initialisation done" << std::endl;
+
+	return pWindow;
+}
+
+#endif
