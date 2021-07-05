@@ -141,11 +141,11 @@
   <ItemGroup>
     <ClCompile Include="FMatrix\FMatrix.cpp" />
     <ClCompile Include="MachineLearning.cpp" />
-    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FMatrix\FMatrix.h" />
-    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
