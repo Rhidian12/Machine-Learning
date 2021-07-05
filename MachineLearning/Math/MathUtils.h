@@ -47,4 +47,20 @@ namespace MathUtils
 		Vector2f& operator=(Vector2f&& other) noexcept;
 #pragma endregion
 	};
+
+	struct RGBColour final
+	{
+		RGBColour();
+		RGBColour(const float r, const float g, const float b);
+		RGBColour(const float r, const float g, const float b, const float a);
+
+#pragma region RuleOf5
+		RGBColour(const RGBColour& other) noexcept;
+		RGBColour(RGBColour&& other) noexcept;
+		RGBColour& operator=(const RGBColour& other) noexcept;
+		RGBColour& operator=(RGBColour&& other) noexcept;
+#pragma endregion
+
+		float r, g, b, a;
+	};
 }

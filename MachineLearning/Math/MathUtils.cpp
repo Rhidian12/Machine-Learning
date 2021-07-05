@@ -128,5 +128,54 @@ namespace MathUtils
 		y = std::move(other.y);
 		return *this;
 	}
-}
 #pragma endregion
+
+#pragma region RGB
+	RGBColour::RGBColour()
+		: r{}
+		, g{}
+		, b{}
+		, a{ 1.f }
+	{}
+	RGBColour::RGBColour(const float r, const float g, const float b)
+		: r{ r }
+		, g{ g }
+		, b{ b }
+		, a{ 1.f }
+	{}
+	RGBColour::RGBColour(const float r, const float g, const float b, const float a)
+		: r{ r }
+		, g{ g }
+		, b{ b }
+		, a{ a }
+	{}
+	RGBColour::RGBColour(const RGBColour& other) noexcept
+		: r{ other.r }
+		, g{ other.g }
+		, b{ other.b }
+		, a{ other.a }
+	{}
+	RGBColour::RGBColour(RGBColour&& other) noexcept
+		: r{ std::move(other.r) }
+		, g{ std::move(other.g) }
+		, b{ std::move(other.b) }
+		, a{ std::move(other.a) }
+	{}
+	RGBColour& RGBColour::operator=(const RGBColour& other) noexcept
+	{
+		r = other.r;
+		g = other.g;
+		b = other.b;
+		a = other.a;
+		return *this;
+	}
+	RGBColour& RGBColour::operator=(RGBColour&& other) noexcept
+	{
+		r = std::move(other.r);
+		g = std::move(other.g);
+		b = std::move(other.b);
+		a = std::move(other.a);
+		return *this;
+	}
+#pragma endregion
+}
