@@ -12,6 +12,8 @@ public:
 	FMatrix& operator=(const FMatrix& other) noexcept;
 	FMatrix& operator=(FMatrix&& other) noexcept;
 
+	const float Get(const uint32_t row, const uint32_t col) const noexcept;
+
 	void Print() const noexcept;
 
 private:

@@ -46,6 +46,13 @@ FMatrix& FMatrix::operator=(FMatrix&& other) noexcept
 	return *this;
 }
 
+const float FMatrix::Get(const uint32_t row, const uint32_t col) const noexcept
+{
+	Utils::Assert(row < m_Data.size() && col < m_Data.size(), "FMatrix::Get() > Index was out of bounds!");
+
+	return m_Data[row][col];
+}
+
 void FMatrix::Print() const noexcept
 {
 	std::cout << std::fixed << std::setprecision(1);
