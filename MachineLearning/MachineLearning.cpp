@@ -57,6 +57,7 @@ TEST_CASE("Test FMatrix")
 
 #include "Texture/Texture.h"	
 #include "Renderer/Renderer.h"
+#include "PathfindingML/PathfindingML.h"
 
 #include <vld.h>
 
@@ -69,6 +70,8 @@ int main(int, char* [])
 	Renderer* pRenderer{ Renderer::GetInstance() };
 
 	pRenderer->CreateRenderer(pWindow);
+
+	PathfindingML scene{};
 
 	bool doContinue{ true };
 	while (doContinue)
@@ -88,6 +91,8 @@ int main(int, char* [])
 		}
 
 		pRenderer->ClearRenderer();
+
+		scene.Render();
 
 		pRenderer->Present();
 	}
