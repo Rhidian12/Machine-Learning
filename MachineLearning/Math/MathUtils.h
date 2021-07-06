@@ -1,5 +1,7 @@
 #pragma once
 
+#include <utility>
+
 namespace MathUtils
 {
 	struct Point2f final
@@ -68,9 +70,9 @@ namespace MathUtils
 	{
 		inline static int windowHeight{};
 
-		Point2f&& operator()(const Point2f& position) const noexcept
+		Point2f operator()(const Point2f& position) const noexcept
 		{
-			return std::move(Point2f{position.x, windowHeight - position.y});
+			return Point2f{position.x, windowHeight - position.y};
 		}
 	};
 }

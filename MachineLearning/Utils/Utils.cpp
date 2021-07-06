@@ -26,10 +26,10 @@ namespace Utils
 
 	void DrawCircle(const MathUtils::Point2f& position, const int radius, const MathUtils::RGBColour& colour, const float angleToDraw) noexcept
 	{
-		const float newY{};
+		const MathUtils::Point2f newPos{ MathUtils::ConvertToBottomLeftOrigin{}(position) };
 		SDL_Renderer* const pSDLRenderer{ Renderer::GetInstance()->GetSDLRenderer() };
 		SDL_SetRenderDrawColor(pSDLRenderer, Uint8(colour.r), Uint8(colour.g), Uint8(colour.b), Uint8(colour.a));
-			for (float angle{}; angle < angleToDraw; ++angle)
-				SDL_RenderDrawPointF(pSDLRenderer, float(position.x + cos(angle) * radius), float(position.y + sin(angle) * radius));
+		for (float angle{}; angle < angleToDraw; ++angle)
+			SDL_RenderDrawPointF(pSDLRenderer, float(newPos.x + cos(angle) * radius), float(newPos.y + sin(angle) * radius));
 	}
 }
