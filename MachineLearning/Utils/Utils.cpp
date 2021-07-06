@@ -1,7 +1,8 @@
 #include "Utils.h"
+#include "../Renderer/Renderer.h"
 
 #include <iostream>
-#include <SDL_opengl.h>
+#include <SDL.h>
 
 namespace Utils
 {
@@ -23,14 +24,12 @@ namespace Utils
 #endif // _DEBUG
 
 
-	void DrawCircle(const MathUtils::Point2f& position, const int radius, const MathUtils::RGBColour& colour) noexcept
+	void DrawCircle(const MathUtils::Point2f& position, const int radius, const MathUtils::RGBColour& colour, const float angleToDraw) noexcept
 	{
-		glColor4f(colour.r, colour.g, colour.b, colour.a);
-		glBegin(GL_LINES);
-		{
-			for (int angle{}; angle < 360; ++angle)
-				glVertex2d(position.x + cos(angle) * radius, position.y + sin(angle) * radius);
-		}
-		glEnd();
+		const float newY{};
+		SDL_Renderer* const pSDLRenderer{ Renderer::GetInstance()->GetSDLRenderer() };
+		SDL_SetRenderDrawColor(pSDLRenderer, Uint8(colour.r), Uint8(colour.g), Uint8(colour.b), Uint8(colour.a));
+			for (float angle{}; angle < angleToDraw; ++angle)
+				SDL_RenderDrawPointF(pSDLRenderer, float(position.x + cos(angle) * radius), float(position.y + sin(angle) * radius));
 	}
 }

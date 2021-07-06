@@ -58,6 +58,7 @@ TEST_CASE("Test FMatrix")
 #include "Texture/Texture.h"	
 #include "Renderer/Renderer.h"
 #include "PathfindingML/PathfindingML.h"
+#include "Math/MathUtils.h"
 
 #include <vld.h>
 
@@ -70,6 +71,8 @@ int main(int, char* [])
 	Renderer* pRenderer{ Renderer::GetInstance() };
 
 	pRenderer->CreateRenderer(pWindow);
+
+	SDL_GetWindowSize(pWindow, nullptr, &MathUtils::ConvertToBottomLeftOrigin::windowHeight);
 
 	PathfindingML scene{};
 

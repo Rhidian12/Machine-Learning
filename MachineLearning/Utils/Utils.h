@@ -11,7 +11,7 @@ namespace Utils
 	void Assert(const bool expression, std::string&& message);
 #endif
 
-	void DrawCircle(const MathUtils::Point2f& position, const int radius, const MathUtils::RGBColour& colour) noexcept;
+	void DrawCircle(const MathUtils::Point2f& position, const int radius, const MathUtils::RGBColour& colour, const float angleToDraw = 360.f) noexcept;
 
 	template<typename Type>
 	inline void SafeDelete(Type*& pData)

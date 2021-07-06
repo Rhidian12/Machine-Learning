@@ -63,4 +63,14 @@ namespace MathUtils
 
 		float r, g, b, a;
 	};
+
+	struct ConvertToBottomLeftOrigin
+	{
+		inline static int windowHeight{};
+
+		Point2f&& operator()(const Point2f& position) const noexcept
+		{
+			return std::move(Point2f{position.x, windowHeight - position.y});
+		}
+	};
 }
