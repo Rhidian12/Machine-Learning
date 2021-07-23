@@ -20,7 +20,8 @@ public:
 	const uint32_t&& GetNumberOfRows() const noexcept;
 	const uint32_t&& GetNumberOfColumns() const noexcept;
 
-	const float&& Sum() const noexcept;
+	const float&& GetSum() const noexcept;
+	const float&& GetMax() const noexcept;
 
 	void Print() const noexcept;
 

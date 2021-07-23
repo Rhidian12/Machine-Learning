@@ -77,7 +77,7 @@ const uint32_t&& FMatrix::GetNumberOfColumns() const noexcept
 	return std::move(m_Data[0].size());
 }
 
-const float&& FMatrix::Sum() const noexcept
+const float&& FMatrix::GetSum() const noexcept
 {
 	float sum{};
 	for (size_t r{}; r < GetNumberOfRows(); ++r)
@@ -85,6 +85,17 @@ const float&& FMatrix::Sum() const noexcept
 			sum += m_Data[r][c];
 
 	return std::move(sum);
+}
+
+const float&& FMatrix::GetMax() const noexcept
+{
+	float max{};
+	for (size_t r{}; r < GetNumberOfRows(); ++r)
+		for (size_t c{}; c < GetNumberOfColumns(); ++c)
+			if (m_Data[r][c] > max)
+				max = m_Data[r][c];
+
+	return std::move(max);
 }
 
 void FMatrix::Print() const noexcept
