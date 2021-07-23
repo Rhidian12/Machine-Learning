@@ -9,6 +9,7 @@ Node::Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const u
 	, m_Index{ index }
 	, m_pTexture{}
 	, m_Score{ score }
+	, m_pTransitions{}
 {
 	m_pTexture = new Texture{ "Data/OswaldLight.ttf", std::to_string(index), 15, m_Colour };
 }
@@ -58,6 +59,11 @@ void Node::Render() const noexcept
 {
 	Utils::DrawCircle(m_Position, 10, m_Colour);
 	Renderer::GetInstance()->Render(m_pTexture, MathUtils::Point2f{ m_Position.x, m_Position.y + m_pTexture->GetHeight() / 2.f });
+}
+
+void Node::AddTransition(Transition* const pTransition) noexcept
+{
+	m_pTransitions.push_back(pTransition);
 }
 
 const MathUtils::Point2f& Node::GetPosition() const noexcept

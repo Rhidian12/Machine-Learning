@@ -3,7 +3,9 @@
 #include "../Math/MathUtils.h"
 
 #include <stdint.h>
+#include <vector>
 
+class Transition;
 class Texture;
 class Node final
 {
@@ -18,6 +20,8 @@ public:
 
 	void Render() const noexcept;
 
+	void AddTransition(Transition* const pTransition) noexcept;
+
 	const MathUtils::Point2f& GetPosition() const noexcept;
 	const float GetScore() const noexcept;
 
@@ -28,4 +32,6 @@ private:
 	float m_Score;
 
 	Texture* m_pTexture;
+
+	std::vector<Transition*> m_pTransitions;
 };
