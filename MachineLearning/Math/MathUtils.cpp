@@ -1,4 +1,5 @@
 #include "MathUtils.h"
+#include "../Utils/Utils.h"
 
 #include <utility> // std::move
 #include <limits> // std::numeric_limits
@@ -34,9 +35,9 @@ namespace MathUtils
 		y = std::move(other.y);
 		return *this;
 	}
-	Point2f&& Point2f::operator+(const Point2f& rhs) const noexcept
+	Point2f Point2f::operator+(const Point2f& rhs) const noexcept
 	{
-		return std::move(Point2f{ x + rhs.x, y + rhs.y });
+		return Point2f{ x + rhs.x, y + rhs.y };
 	}
 	Point2f& Point2f::operator+=(const Point2f& rhs) noexcept
 	{
@@ -44,9 +45,9 @@ namespace MathUtils
 		y += rhs.y;
 		return *this;
 	}
-	Point2f&& Point2f::operator-(const Point2f& rhs) const noexcept
+	Point2f Point2f::operator-(const Point2f& rhs) const noexcept
 	{
-		return std::move(Point2f{ x - rhs.x, y - rhs.y });
+		return Point2f{ x - rhs.x, y - rhs.y };
 	}
 	Point2f& Point2f::operator-=(const Point2f& rhs) noexcept
 	{
@@ -54,9 +55,9 @@ namespace MathUtils
 		y -= rhs.y;
 		return *this;
 	}
-	Point2f&& Point2f::operator*(const Point2f& rhs) const noexcept
+	Point2f Point2f::operator*(const Point2f& rhs) const noexcept
 	{
-		return std::move(Point2f{ x * rhs.x, y * rhs.y });
+		return Point2f{ x * rhs.x, y * rhs.y };
 	}
 	Point2f& Point2f::operator*=(const Point2f& rhs) noexcept
 	{
@@ -64,9 +65,9 @@ namespace MathUtils
 		y *= rhs.y;
 		return *this;
 	}
-	Point2f&& Point2f::operator*(const float rhs) const noexcept
+	Point2f Point2f::operator*(const float rhs) const noexcept
 	{
-		return std::move(Point2f{ x * rhs, y * rhs });
+		return Point2f{ x * rhs, y * rhs };
 	}
 	Point2f& Point2f::operator*=(const float rhs) noexcept
 	{
@@ -131,6 +132,18 @@ namespace MathUtils
 	{
 		x = std::move(other.x);
 		y = std::move(other.y);
+		return *this;
+	}
+	Vector2f& Vector2f::operator/=(const Vector2f& other) noexcept
+	{
+		x /= other.x;
+		y /= other.y;
+		return *this;
+	}
+	Vector2f& Vector2f::operator/=(const float other) noexcept
+	{
+		x /= other;
+		y /= other;
 		return *this;
 	}
 #pragma endregion
@@ -201,5 +214,36 @@ namespace MathUtils
 		newPoint = Point2f{ newX + originPoint.x, newY + originPoint.y };
 
 		return std::move(newPoint);
+	}
+	float Dot(const Vector2f& vectorOne, const Vector2f& vectorTwo) noexcept
+	{
+		return vectorOne.x * vectorTwo.x + vectorOne.y * vectorTwo.y;
+	}
+	float MagnitudeSquared(const Vector2f& vector) noexcept
+	{
+		return Dot(vector, vector);
+	}
+	float Magnitude(const Vector2f& vector) noexcept
+	{
+		return sqrtf(MagnitudeSquared(vector));
+	}
+	float Normalize(Vector2f& vector) noexcept
+	{
+		float magnitude{ Magnitude(vector) };
+
+		Utils::Assert(magnitude != 0.f, "MathUtils::Normalize() > Magnitude was 0!\n");
+
+		vector /= magnitude;
+		return magnitude;
+	}
+	Vector2f GetNormalized(const Vector2f& vector) noexcept
+	{
+		float magnitude{ Magnitude(vector) };
+
+		Utils::Assert(magnitude != 0.f, "MathUtils::Normalize() > Magnitude was 0!\n");
+
+		Vector2f newVector{ vector };
+		newVector /= magnitude;
+		return newVector;
 	}
 }

@@ -22,13 +22,13 @@ namespace MathUtils
 #pragma endregion
 
 #pragma region Operators
-		Point2f&& operator+(const Point2f& rhs) const noexcept;
+		Point2f operator+(const Point2f& rhs) const noexcept;
 		Point2f& operator+=(const Point2f& rhs) noexcept;
-		Point2f&& operator-(const Point2f& rhs) const noexcept;
+		Point2f operator-(const Point2f& rhs) const noexcept;
 		Point2f& operator-=(const Point2f& rhs) noexcept;
-		Point2f&& operator*(const Point2f& rhs) const noexcept;
+		Point2f operator*(const Point2f& rhs) const noexcept;
 		Point2f& operator*=(const Point2f& rhs) noexcept;
-		Point2f&& operator*(const float rhs) const noexcept;
+		Point2f operator*(const float rhs) const noexcept;
 		Point2f& operator*=(const float rhs) noexcept;
 		const bool operator<(const Point2f& rhs) const noexcept;
 		const bool operator>(const Point2f& rhs) const noexcept;
@@ -54,7 +54,18 @@ namespace MathUtils
 		Vector2f& operator=(const Vector2f& other) noexcept;
 		Vector2f& operator=(Vector2f&& other) noexcept;
 #pragma endregion
+
+#pragma region Operators
+		Vector2f& operator/=(const Vector2f& other) noexcept;
+		Vector2f& operator/=(const float other) noexcept;
+#pragma endregion
 	};
+
+	float Dot(const Vector2f& vectorOne, const Vector2f& vectorTwo) noexcept;
+	float MagnitudeSquared(const Vector2f& vector) noexcept;
+	float Magnitude(const Vector2f& vector) noexcept;
+	float Normalize(Vector2f& vector) noexcept;
+	Vector2f GetNormalized(const Vector2f& vector) noexcept;
 
 	struct RGBColour final
 	{
@@ -83,14 +94,14 @@ namespace MathUtils
 	};
 
 	template<typename FloatingPoint, typename = std::enable_if_t<std::is_floating_point_v<FloatingPoint>>>
-	constexpr FloatingPoint&& ToRadians(const FloatingPoint& value)
+	constexpr FloatingPoint ToRadians(const FloatingPoint& value)
 	{
-		return std::move(value * PI / FloatingPoint(180.f));
+		return value * PI / FloatingPoint(180.f);
 	}
 
 	template<typename FloatingPoint, typename = std::enable_if_t<std::is_floating_point_v<FloatingPoint>>>
-	constexpr FloatingPoint&& ToDegrees(const FloatingPoint& value)
+	constexpr FloatingPoint ToDegrees(const FloatingPoint& value)
 	{
-		return std::move(value * FloatingPoint(180.f) / PI);
+		return value * FloatingPoint(180.f) / PI;
 	}
 }
