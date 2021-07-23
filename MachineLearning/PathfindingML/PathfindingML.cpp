@@ -21,7 +21,17 @@ PathfindingML::PathfindingML()
 
 	m_AI = PathfindingAI{ static_cast<int>(m_Nodes.size()) };
 
-	FMatrix rewardMatrix{ m_Nodes.size(),m_Nodes.size() };
+	FMatrix rewardMatrix{ m_Nodes.size(),m_Nodes.size(), -1.f };
+
+	for (size_t r{}; r < rewardMatrix.GetNumberOfRows(); ++r)
+		for (Transition* pTransition : m_Nodes[r].GetTransitions())
+			rewardMatrix.Set(pTransition->GetFromNode()->GetIndex(), pTransition->GetToNode()->GetIndex(), 0.f);
+
+	rewardMatrix.Set(3, 4, 100.f); // manually set goal transition to 100.f
+
+	rewardMatrix.Print(); // for debugging purposes
+
+	m_AI.SetRewardMatrix(std::move(rewardMatrix));
 }
 
 void PathfindingML::Update() noexcept
