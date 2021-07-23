@@ -63,10 +63,13 @@ void Node::Render() const noexcept
 
 void Node::AddTransition(Transition* const pTransition) noexcept
 {
-	m_pTransitions.insert(pTransition);
+	const std::vector<Transition*>::const_iterator cIt = std::find(m_pTransitions.cbegin(), m_pTransitions.cend(), pTransition);
+	
+	if (cIt == m_pTransitions.cend())
+		m_pTransitions.push_back(pTransition);
 }
 
-const std::unordered_set<Transition*>& Node::GetTransitions() const noexcept
+const std::vector<Transition*>& Node::GetTransitions() const noexcept
 {
 	return m_pTransitions;
 }

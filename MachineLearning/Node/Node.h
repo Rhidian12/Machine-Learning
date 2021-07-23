@@ -3,7 +3,7 @@
 #include "../Math/MathUtils.h"
 
 #include <stdint.h>
-#include <unordered_set>
+#include <vector>
 
 class Transition;
 class Texture;
@@ -22,7 +22,7 @@ public:
 
 	void AddTransition(Transition* const pTransition) noexcept;
 
-	const std::unordered_set<Transition*>& GetTransitions() const noexcept;
+	const std::vector<Transition*>& GetTransitions() const noexcept;
 
 	const MathUtils::Point2f& GetPosition() const noexcept;
 	const float GetScore() const noexcept;
@@ -36,5 +36,5 @@ private:
 
 	Texture* m_pTexture;
 
-	std::unordered_set<Transition*> m_pTransitions;
+	std::vector<Transition*> m_pTransitions;
 };
