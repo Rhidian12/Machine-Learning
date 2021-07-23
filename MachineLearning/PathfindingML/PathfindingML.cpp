@@ -4,7 +4,7 @@
 #include "../Renderer/Renderer.h"
 
 PathfindingML::PathfindingML()
-	: m_AI{ 0 } /*I'm lazy TODO: Make this better, lazy bastard*/
+	: m_AI{ 0,0,0 } /*I'm lazy TODO: Make this better, lazy bastard*/
 {
 	m_Nodes.push_back(std::move(Node{ MathUtils::Point2f{200.f, 100.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 0, 0.f }));
 	m_Nodes.push_back(std::move(Node{ MathUtils::Point2f{300.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 1, 40.f }));
@@ -19,7 +19,7 @@ PathfindingML::PathfindingML()
 	m_Transitions.push_back(std::move(Transition{ &m_Nodes[3], &m_Nodes[4] }));
 	m_Transitions.push_back(std::move(Transition{ &m_Nodes[1], &m_Nodes[3] }));
 
-	m_AI = PathfindingAI{ m_Nodes.size() };
+	m_AI = PathfindingAI{ m_Nodes.size(), 0, 4 };
 
 	FMatrix rewardMatrix{ m_Nodes.size(),m_Nodes.size(), -1.f };
 
@@ -39,6 +39,7 @@ PathfindingML::PathfindingML()
 
 void PathfindingML::Update() noexcept
 {
+	m_AI.Train();
 }
 
 void PathfindingML::Render() const noexcept
