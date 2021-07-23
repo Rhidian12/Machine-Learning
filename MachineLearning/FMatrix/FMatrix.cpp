@@ -25,30 +25,22 @@ FMatrix::FMatrix(const uint32_t rows, const uint32_t cols, const float initValue
 FMatrix::FMatrix(const FMatrix& other) noexcept
 	: m_Data{ other.m_Data }
 {
-	Utils::Assert(GetNumberOfRows() == other.GetNumberOfRows(), "FMatrix::FMatrix(const FMatrix& other) > Matrices don't have the same amount of rows!\n");
-	Utils::Assert(GetNumberOfColumns() == other.GetNumberOfColumns(), "FMatrix::FMatrix(const FMatrix& other) > Matrices don't have the same amount of columns!\n");
 }
 
 FMatrix::FMatrix(FMatrix&& other) noexcept
 	: m_Data{ std::move(other.m_Data) }
 {
-	Utils::Assert(GetNumberOfRows() == other.GetNumberOfRows(), "FMatrix::FMatrix(FMatrix&& other) > Matrices don't have the same amount of rows!\n");
-	Utils::Assert(GetNumberOfColumns() == other.GetNumberOfColumns(), "FMatrix::FMatrix(FMatrix&& other) > Matrices don't have the same amount of columns!\n");
 	other.m_Data.clear();
 }
 
 FMatrix& FMatrix::operator=(const FMatrix& other) noexcept
 {
-	Utils::Assert(GetNumberOfRows() == other.GetNumberOfRows(), "FMatrix::operator=(const FMatrix& other) > Matrices don't have the same amount of rows!\n");
-	Utils::Assert(GetNumberOfColumns() == other.GetNumberOfColumns(), "FMatrix::operator=(const FMatrix& other) > Matrices don't have the same amount of columns!\n");
 	m_Data = other.m_Data;
 	return *this;
 }
 
 FMatrix& FMatrix::operator=(FMatrix&& other) noexcept
 {
-	Utils::Assert(GetNumberOfRows() == other.GetNumberOfRows(), "FMatrix::operator=(FMatrix&& other) > Matrices don't have the same amount of rows!\n");
-	Utils::Assert(GetNumberOfColumns() == other.GetNumberOfColumns(), "FMatrix::operator=(FMatrix&& other) > Matrices don't have the same amount of columns!\n");
 	m_Data = std::move(other.m_Data);
 	other.m_Data.clear();
 	return *this;
