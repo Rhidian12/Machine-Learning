@@ -19,7 +19,7 @@ PathfindingML::PathfindingML()
 	m_Transitions.push_back(std::move(Transition{ &m_Nodes[3], &m_Nodes[4] }));
 	m_Transitions.push_back(std::move(Transition{ &m_Nodes[1], &m_Nodes[3] }));
 
-	m_AI = PathfindingAI{ static_cast<int>(m_Nodes.size()) };
+	m_AI = PathfindingAI{ m_Nodes.size() };
 
 	FMatrix rewardMatrix{ m_Nodes.size(),m_Nodes.size(), -1.f };
 
@@ -32,6 +32,9 @@ PathfindingML::PathfindingML()
 	rewardMatrix.Print(); // for debugging purposes
 
 	m_AI.SetRewardMatrix(std::move(rewardMatrix));
+
+	m_AI.SetNodes(&m_Nodes);
+	m_AI.SetTransitions(&m_Transitions);
 }
 
 void PathfindingML::Update() noexcept
