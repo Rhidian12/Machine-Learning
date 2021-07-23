@@ -22,6 +22,8 @@ public:
 
 	void AddTransition(Transition* const pTransition) noexcept;
 
+	const std::unordered_set<Transition*>& GetTransitions() const noexcept;
+
 	const MathUtils::Point2f& GetPosition() const noexcept;
 	const float GetScore() const noexcept;
 

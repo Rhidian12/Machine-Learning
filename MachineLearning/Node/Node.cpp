@@ -66,6 +66,11 @@ void Node::AddTransition(Transition* const pTransition) noexcept
 	m_pTransitions.insert(pTransition);
 }
 
+const std::unordered_set<Transition*>& Node::GetTransitions() const noexcept
+{
+	return m_pTransitions;
+}
+
 const MathUtils::Point2f& Node::GetPosition() const noexcept
 {
 	return m_Position;
