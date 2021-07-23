@@ -9,6 +9,8 @@ Transition::Transition(Node* const pFromNode, Node* const pToNode)
 	, m_pToNode{ pToNode }
 	, m_Colour{ 100.f, 100.f, 100.f }
 {
+	m_pFromNode->AddTransition(this);
+	m_pToNode->AddTransition(this);
 }
 
 Transition::Transition(const Transition& other) noexcept
