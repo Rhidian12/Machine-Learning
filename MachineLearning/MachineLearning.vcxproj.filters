@@ -39,6 +39,12 @@
     <ClCompile Include="PathfindingML\PathfindingML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Transition\Transition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PathfindingAI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FMatrix\FMatrix.h">
@@ -63,6 +69,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PathfindingML\PathfindingML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition\Transition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PathfindingAI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

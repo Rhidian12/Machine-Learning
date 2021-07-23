@@ -1,9 +1,12 @@
 #pragma once
 
+#include <type_traits>
 #include <utility>
 
 namespace MathUtils
 {
+	constexpr float PI = 3.14159265358979323846f;
+
 	struct Point2f final
 	{
 		explicit Point2f();
@@ -35,6 +38,8 @@ namespace MathUtils
 		const bool operator!=(const Point2f& rhs) const noexcept;
 #pragma endregion
 	};
+
+	Point2f&& RotatePointAroundPoint(const Point2f& pointToRotate, const Point2f& originPoint, const float angle) noexcept;
 
 	struct Vector2f final
 	{
@@ -75,4 +80,16 @@ namespace MathUtils
 			return Point2f{position.x, windowHeight - position.y};
 		}
 	};
+
+	template<typename FloatingPoint, typename = std::enable_if_t<std::is_floating_point_v<FloatingPoint>>>
+	constexpr FloatingPoint&& ToRadians(const FloatingPoint& value)
+	{
+		return std::move(value * PI / FloatingPoint(180.f));
+	}
+
+	template<typename FloatingPoint, typename = std::enable_if_t<std::is_floating_point_v<FloatingPoint>>>
+	constexpr FloatingPoint&& ToDegrees(const FloatingPoint& value)
+	{
+		return std::move(value * FloatingPoint(180.f) / PI);
+	}
 }

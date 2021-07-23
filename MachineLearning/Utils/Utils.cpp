@@ -30,6 +30,17 @@ namespace Utils
 		SDL_Renderer* const pSDLRenderer{ Renderer::GetInstance()->GetSDLRenderer() };
 		SDL_SetRenderDrawColor(pSDLRenderer, Uint8(colour.r), Uint8(colour.g), Uint8(colour.b), Uint8(colour.a));
 		for (float angle{}; angle < angleToDraw; ++angle)
-			SDL_RenderDrawPointF(pSDLRenderer, float(newPos.x + cos(angle) * radius), float(newPos.y + sin(angle) * radius));
+			SDL_RenderDrawPoint(pSDLRenderer, int(newPos.x + cos(angle) * radius), int(newPos.y + sin(angle) * radius));
+	}
+
+	void DrawLine(const MathUtils::Point2f& startPos, const MathUtils::Point2f& endPos, const MathUtils::RGBColour& colour) noexcept
+	{
+		const MathUtils::Point2f newStartPos{ MathUtils::ConvertToBottomLeftOrigin{}(startPos) };
+		const MathUtils::Point2f newEndPos{ MathUtils::ConvertToBottomLeftOrigin{}(endPos) };
+
+		SDL_Renderer* const pSDLRenderer{ Renderer::GetInstance()->GetSDLRenderer() };
+		SDL_SetRenderDrawColor(pSDLRenderer, Uint8(colour.r), Uint8(colour.g), Uint8(colour.b), Uint8(colour.a));
+
+		SDL_RenderDrawLine(pSDLRenderer, int(newStartPos.x), int(newStartPos.y), int(newEndPos.x), int(newEndPos.y));
 	}
 }

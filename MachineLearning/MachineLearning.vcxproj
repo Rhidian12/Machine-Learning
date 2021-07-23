@@ -111,6 +111,7 @@
 xcopy "$(SolutionDir)Libraries\SDL2_image-2.0.5\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D 
 xcopy "$(SolutionDir)Libraries\SDL2_mixer-2.0.4\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D 
 xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D </Command>
+      <Message>COPY DLL'S</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,6 +139,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
 xcopy "$(SolutionDir)Libraries\SDL2_image-2.0.5\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D 
 xcopy "$(SolutionDir)Libraries\SDL2_mixer-2.0.4\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D 
 xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D </Command>
+      <Message>COPY DLL'S</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -161,6 +163,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
 xcopy "$(SolutionDir)Libraries\SDL2_image-2.0.5\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D 
 xcopy "$(SolutionDir)Libraries\SDL2_mixer-2.0.4\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D 
 xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D </Command>
+      <Message>COPY DLL'S</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -188,6 +191,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
 xcopy "$(SolutionDir)Libraries\SDL2_image-2.0.5\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D 
 xcopy "$(SolutionDir)Libraries\SDL2_mixer-2.0.4\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D 
 xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(OutDir)" /y /D </Command>
+      <Message>COPY DLL'S</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -195,9 +199,11 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     <ClCompile Include="MachineLearning.cpp" />
     <ClCompile Include="Math\MathUtils.cpp" />
     <ClCompile Include="Node\Node.cpp" />
+    <ClCompile Include="PathfindingAI.cpp" />
     <ClCompile Include="PathfindingML\PathfindingML.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Texture\Texture.cpp" />
+    <ClCompile Include="Transition\Transition.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -205,9 +211,11 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     <ClInclude Include="FMatrix\FMatrix.h" />
     <ClInclude Include="Math\MathUtils.h" />
     <ClInclude Include="Node\Node.h" />
+    <ClInclude Include="PathfindingAI.h" />
     <ClInclude Include="PathfindingML\PathfindingML.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Texture\Texture.h" />
+    <ClInclude Include="Transition\Transition.h" />
     <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

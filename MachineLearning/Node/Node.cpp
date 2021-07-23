@@ -3,13 +3,14 @@
 #include "../Texture/Texture.h"
 #include "../Renderer/Renderer.h"
 
-Node::Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index)
+Node::Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index, const float score)
 	: m_Position{ position }
 	, m_Colour{ colour }
 	, m_Index{ index }
 	, m_pTexture{}
+	, m_Score{ score }
 {
-	m_pTexture = new Texture{ "Data/OswaldLight.ttf", std::to_string(index), 5, m_Colour };
+	m_pTexture = new Texture{ "Data/OswaldLight.ttf", std::to_string(index), 15, m_Colour };
 }
 
 Node::~Node()
@@ -56,5 +57,15 @@ Node& Node::operator=(Node&& other) noexcept
 void Node::Render() const noexcept
 {
 	Utils::DrawCircle(m_Position, 10, m_Colour);
-	Renderer::GetInstance()->Render(m_pTexture, MathUtils::Point2f{ m_Position.x + 5.f, m_Position.y + 5.f });
+	Renderer::GetInstance()->Render(m_pTexture, MathUtils::Point2f{ m_Position.x, m_Position.y + m_pTexture->GetHeight() / 2.f });
+}
+
+const MathUtils::Point2f& Node::GetPosition() const noexcept
+{
+	return m_Position;
+}
+
+const float Node::GetScore() const noexcept
+{
+	return m_Score;
 }

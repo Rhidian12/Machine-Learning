@@ -16,7 +16,7 @@ void Renderer::CreateRenderer(SDL_Window* const pWindow) noexcept
 
     Utils::Assert(m_pSDLRenderer == nullptr, "Renderer::CreateRenderer() > Only call this function once!");
 
-    m_pSDLRenderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
+    m_pSDLRenderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     Utils::Assert(m_pSDLRenderer != nullptr, SDL_GetError());
 }
@@ -46,9 +46,11 @@ void Renderer::Render(Texture* pTexture, const MathUtils::Point2f& position) noe
 {
     Utils::Assert(m_pSDLRenderer != nullptr, "Renderer::Render() > Renderer::CreateRenderer() has not been called!");
 
+    const MathUtils::Point2f convertedPoint{ MathUtils::ConvertToBottomLeftOrigin{}(position) };
+
     SDL_Rect destRect{};
-    destRect.x = int(position.x);
-    destRect.y = int(position.y);
+    destRect.x = int(convertedPoint.x);
+    destRect.y = int(convertedPoint.y);
     destRect.w = pTexture->GetWidth();
     destRect.h = pTexture->GetHeight();
 

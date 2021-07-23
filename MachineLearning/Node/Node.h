@@ -8,7 +8,7 @@ class Texture;
 class Node final
 {
 public:
-	Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index);
+	Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index, const float score);
 	~Node();
 
 	Node(const Node& other) noexcept;
@@ -18,10 +18,14 @@ public:
 
 	void Render() const noexcept;
 
+	const MathUtils::Point2f& GetPosition() const noexcept;
+	const float GetScore() const noexcept;
+
 private:
 	MathUtils::Point2f m_Position;
 	MathUtils::RGBColour m_Colour;
 	uint32_t m_Index;
+	float m_Score;
 
 	Texture* m_pTexture;
 };

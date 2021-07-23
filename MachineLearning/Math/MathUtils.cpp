@@ -178,4 +178,23 @@ namespace MathUtils
 		return *this;
 	}
 #pragma endregion
+	Point2f&& RotatePointAroundPoint(const Point2f& pointToRotate, const Point2f& originPoint, const float angle) noexcept
+	{
+		Point2f newPoint{ pointToRotate };
+
+		const float cosine{ cosf(angle) };
+		const float sine{ sinf(angle) };
+
+		// translate to origin
+		newPoint -= originPoint;
+
+		// rotate points and translate back to original location
+		float newX = newPoint.x * cosine - newPoint.y * sine;
+		float newY = newPoint.x * sine + newPoint.y * cosine;
+
+		// translate back to original position
+		newPoint = Point2f{ newX + originPoint.x, newY + originPoint.y };
+
+		return std::move(newPoint);
+	}
 }

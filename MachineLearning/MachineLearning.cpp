@@ -1,8 +1,7 @@
 #include <iostream>
 
-#include "FMatrix/FMatrix.h"
-
 #ifdef UNIT_TESTS
+#include "FMatrix/FMatrix.h"
 
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
@@ -113,51 +112,19 @@ SDL_Window* InitSDL()
 #pragma region SDL Stuff
 	//Create window + surfaces
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_AUDIO) == -1)
-	{
 		std::cout << SDL_GetError() << std::endl;
-	}
 
 	SDL_Window* pWindow = SDL_CreateWindow(
 		"Machine Learning - Rhidian De Wit",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		width, height,
-		SDL_WINDOW_OPENGL);
+		width, height, 0);
 
 	if (!pWindow)
 	{
 		std::cerr << "Error: m_pWindow failed in App::Initialize()\n";
 		return nullptr;
 	}
-
-	SDL_GLContext context = SDL_GL_CreateContext(pWindow);
-	if (context == nullptr)
-		std::cerr << "App::Initialize() CreateContext() failed\n";
-
-	if (SDL_GL_SetSwapInterval(1) < 0)
-	{
-		std::cerr << "App::Initialize() error when calling SDL_GL_SetSwapInterval " << SDL_GetError() << std::endl;
-		return nullptr;
-	}
-
-	// Set the Projection matrix to the identity matrix
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	// Set up a two-dimensional orthographic viewing region.
-	gluOrtho2D(0, width, 0, height); // y from bottom to top
-
-	// Set the viewport to the client window area
-	// The viewport is the rectangu	lar region of the window where the image is drawn.
-	glViewport(0, 0, width, height);
-
-	// Set the Modelview matrix to the identity matrix
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-
-	// Enable color blending and use alpha blending
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//Initialize PNG loading
 	const int pngFlags{ IMG_INIT_PNG };
