@@ -83,8 +83,9 @@ void FMatrix::Print() const noexcept
 	for (const std::vector<float>& array : m_Data)
 	{
 		for (const float element : array)
-			std::cout << element << ", ";
+			std::cout << element << "," << std::setw(6);
 
+		std::cout << std::setw(0);
 		std::cout << std::endl;
 	}
 }
