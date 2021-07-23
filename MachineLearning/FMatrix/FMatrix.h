@@ -20,6 +20,8 @@ public:
 	const uint32_t&& GetNumberOfRows() const noexcept;
 	const uint32_t&& GetNumberOfColumns() const noexcept;
 
+	const float&& Sum() const noexcept;
+
 	void Print() const noexcept;
 
 	const bool operator==(const FMatrix& other) const noexcept;

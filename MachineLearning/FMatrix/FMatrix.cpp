@@ -77,6 +77,16 @@ const uint32_t&& FMatrix::GetNumberOfColumns() const noexcept
 	return std::move(m_Data[0].size());
 }
 
+const float&& FMatrix::Sum() const noexcept
+{
+	float sum{};
+	for (size_t r{}; r < GetNumberOfRows(); ++r)
+		for (size_t c{}; c < GetNumberOfColumns(); ++c)
+			sum += m_Data[r][c];
+
+	return std::move(sum);
+}
+
 void FMatrix::Print() const noexcept
 {
 	std::cout << std::fixed << std::setprecision(1);
