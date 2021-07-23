@@ -63,7 +63,7 @@ void Node::Render() const noexcept
 
 void Node::AddTransition(Transition* const pTransition) noexcept
 {
-	m_pTransitions.push_back(pTransition);
+	m_pTransitions.insert(pTransition);
 }
 
 const MathUtils::Point2f& Node::GetPosition() const noexcept

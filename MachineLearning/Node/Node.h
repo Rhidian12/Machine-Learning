@@ -3,7 +3,7 @@
 #include "../Math/MathUtils.h"
 
 #include <stdint.h>
-#include <vector>
+#include <unordered_set>
 
 class Transition;
 class Texture;
@@ -33,5 +33,5 @@ private:
 
 	Texture* m_pTexture;
 
-	std::vector<Transition*> m_pTransitions;
+	std::unordered_set<Transition*> m_pTransitions;
 };
