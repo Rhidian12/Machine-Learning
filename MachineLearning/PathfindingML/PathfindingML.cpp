@@ -16,6 +16,7 @@ PathfindingML::PathfindingML()
 	m_Nodes.push_back(new Node{ MathUtils::Point2f{400.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 7 });
 	m_Nodes.push_back(new Node{ MathUtils::Point2f{500.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 8 });
 	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 50.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 9 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{400.f, 250.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 10 });
 
 	m_Transitions.push_back(new Transition{ m_Nodes[0], m_Nodes[1] });
 	m_Transitions.push_back(new Transition{ m_Nodes[1], m_Nodes[0] });
@@ -38,7 +39,22 @@ PathfindingML::PathfindingML()
 	m_Transitions.push_back(new Transition{ m_Nodes[1], m_Nodes[7] });
 	m_Transitions.push_back(new Transition{ m_Nodes[7], m_Nodes[1] });
 
-	m_AI = PathfindingAI{ m_Nodes.size(), 0, 4 };
+	m_Transitions.push_back(new Transition{ m_Nodes[7], m_Nodes[8] });
+	m_Transitions.push_back(new Transition{ m_Nodes[8], m_Nodes[7] });
+
+	m_Transitions.push_back(new Transition{ m_Nodes[7], m_Nodes[6] });
+	m_Transitions.push_back(new Transition{ m_Nodes[6], m_Nodes[7] });
+
+	m_Transitions.push_back(new Transition{ m_Nodes[6], m_Nodes[8] });
+	m_Transitions.push_back(new Transition{ m_Nodes[8], m_Nodes[6] });
+
+	m_Transitions.push_back(new Transition{ m_Nodes[7], m_Nodes[10] });
+	m_Transitions.push_back(new Transition{ m_Nodes[10], m_Nodes[7] });
+
+	m_Transitions.push_back(new Transition{ m_Nodes[3], m_Nodes[10] });
+	m_Transitions.push_back(new Transition{ m_Nodes[10], m_Nodes[3] });
+
+	m_AI = PathfindingAI{ m_Nodes.size(), 0, 10 };
 
 	FMatrix rewardMatrix{ m_Nodes.size(),m_Nodes.size(), -1.f };
 
@@ -46,7 +62,8 @@ PathfindingML::PathfindingML()
 		for (Transition* pTransition : m_Nodes[r]->GetTransitions())
 			rewardMatrix.Set(pTransition->GetFromNode()->GetIndex(), pTransition->GetToNode()->GetIndex(), 0.f);
 
-	rewardMatrix.Set(3, 4, 100.f); // manually set goal transition to 100.f
+	rewardMatrix.Set(3, 10, 100.f); // manually set goal transition to 100.f
+	rewardMatrix.Set(7, 10, 100.f); // manually set goal transition to 100.f
 
 	rewardMatrix.Print(); // for debugging purposes
 
@@ -67,7 +84,7 @@ PathfindingML::~PathfindingML()
 
 void PathfindingML::Update() noexcept
 {
-	//m_AI.Train();
+	m_AI.Train();
 }
 
 void PathfindingML::Render() const noexcept
