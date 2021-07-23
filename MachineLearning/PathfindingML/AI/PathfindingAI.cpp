@@ -16,15 +16,13 @@ PathfindingAI::PathfindingAI(const uint32_t amountOfNodes, const uint32_t startL
 {
 }
 
-bool PathfindingAI::Train() noexcept
+void PathfindingAI::Train() noexcept
 {
 	if (m_CurrentIteration < m_NrOfIterations) // we are still training
 	{
 		const float score{ Update() };
 
 		std::cout << "Iteration: " << m_CurrentIteration++ << ", Score: " << score << std::endl;
-
-		return true;
 	}
 	else // end of training
 	{
@@ -54,8 +52,6 @@ bool PathfindingAI::Train() noexcept
 
 		std::cout << std::endl;
 		++m_CurrentIteration;
-
-		return false;
 	}
 }
 
@@ -75,14 +71,12 @@ const float&& PathfindingAI::Update() noexcept
 	Node* const pToNode{ possibleNodes[rand() % possibleNodes.size()] };
 
 	// Calculate the max of row nr [TO NODE INDEX]
-	float max{};
-	for (size_t i{}; i < m_QMatrix.GetNumberOfColumns(); ++i)
-		max += m_QMatrix.Get(pToNode->GetIndex(), i);
+	float maxOfRow{ m_QMatrix.GetMaxOfRow(pToNode->GetIndex()) };
 
 	// Gather all the columns that have a value equal to max
 	std::vector<uint32_t> columnIndices{};
 	for (size_t i{}; i < m_QMatrix.GetNumberOfColumns(); ++i)
-		if (m_QMatrix.Get(pToNode->GetIndex(), i) == max)
+		if (m_QMatrix.Get(pToNode->GetIndex(), i) == maxOfRow)
 			columnIndices.push_back(i);
 
 	// Get the value from the random cell

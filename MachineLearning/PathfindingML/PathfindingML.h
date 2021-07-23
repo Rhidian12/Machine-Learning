@@ -12,7 +12,7 @@ public:
 	PathfindingML();
 	~PathfindingML();
 
-	bool Update() noexcept;
+	void Update() noexcept;
 	void Render() const noexcept;
 
 private:

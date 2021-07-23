@@ -55,10 +55,9 @@ PathfindingML::~PathfindingML()
 		delete pTransition;
 }
 
-bool PathfindingML::Update() noexcept
+void PathfindingML::Update() noexcept
 {
-	//return m_AI.Train();
-	return true;
+	return m_AI.Train();
 }
 
 void PathfindingML::Render() const noexcept
