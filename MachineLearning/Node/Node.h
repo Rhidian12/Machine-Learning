@@ -26,6 +26,7 @@ public:
 
 	const MathUtils::Point2f& GetPosition() const noexcept;
 	const float GetScore() const noexcept;
+	const uint32_t GetIndex() const noexcept;
 
 private:
 	MathUtils::Point2f m_Position;

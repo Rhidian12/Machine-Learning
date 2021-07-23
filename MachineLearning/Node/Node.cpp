@@ -80,3 +80,8 @@ const float Node::GetScore() const noexcept
 {
 	return m_Score;
 }
+
+const uint32_t Node::GetIndex() const noexcept
+{
+	return m_Index;
+}
