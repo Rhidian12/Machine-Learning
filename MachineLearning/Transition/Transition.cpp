@@ -8,6 +8,7 @@ Transition::Transition(Node* const pFromNode, Node* const pToNode)
 	: m_pFromNode{ pFromNode }
 	, m_pToNode{ pToNode }
 	, m_Colour{ 100.f, 100.f, 100.f }
+	, m_IsRendered{}
 {
 	m_pFromNode->AddTransition(this);
 	m_pToNode->AddTransition(this);
@@ -16,12 +17,14 @@ Transition::Transition(Node* const pFromNode, Node* const pToNode)
 Transition::Transition(const Transition& other) noexcept
 	: m_pFromNode{ other.m_pFromNode }
 	, m_pToNode{ other.m_pToNode }
+	, m_IsRendered{ other.m_IsRendered }
 {
 }
 
 Transition::Transition(Transition&& other) noexcept
 	: m_pFromNode{ std::move(other.m_pFromNode) }
 	, m_pToNode{ std::move(other.m_pToNode) }
+	, m_IsRendered{ std::move(other.m_IsRendered) }
 {
 }
 
@@ -29,6 +32,7 @@ Transition& Transition::operator=(const Transition& other) noexcept
 {
 	m_pFromNode = other.m_pFromNode;
 	m_pToNode = other.m_pToNode;
+	m_IsRendered = other.m_IsRendered;
 	return *this;
 }
 
@@ -36,13 +40,27 @@ Transition& Transition::operator=(Transition&& other) noexcept
 {
 	m_pFromNode = std::move(other.m_pFromNode);
 	m_pToNode = std::move(other.m_pToNode);
+	m_IsRendered = std::move(other.m_IsRendered);
 	return *this;
 }
 
 void Transition::Render() const noexcept
 {
-	Utils::DrawLine(m_pFromNode->GetPosition(), m_pToNode->GetPosition(), m_Colour);
-	DrawTriangle();
+	if (!m_IsRendered)
+	{
+		Utils::DrawLine(m_pFromNode->GetPosition(), m_pToNode->GetPosition(), m_Colour);
+		DrawTriangle();
+	}
+}
+
+void Transition::SetIsRendered(const bool isRendered) noexcept
+{
+	m_IsRendered = isRendered;
+}
+
+const bool Transition::GetIsRendered() const noexcept
+{
+	return m_IsRendered;
 }
 
 Node* const Transition::GetFromNode() const noexcept

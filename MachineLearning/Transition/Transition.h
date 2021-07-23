@@ -16,12 +16,17 @@ public:
 
 	void Render() const noexcept;
 
+	void SetIsRendered(const bool isRendered) noexcept;
+	const bool GetIsRendered() const noexcept;
+
 	Node* const GetFromNode() const noexcept;
 	Node* const GetToNode() const noexcept;
 
 private:
 	Node* m_pFromNode;
 	Node* m_pToNode;
+
+	bool m_IsRendered;
 
 	MathUtils::RGBColour m_Colour;
 
