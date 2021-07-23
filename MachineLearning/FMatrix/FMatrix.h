@@ -22,7 +22,7 @@ public:
 
 	const float&& GetSum() const noexcept;
 	const float&& GetMax() const noexcept;
-	const float&& GetMaxOfRow(const float row) const noexcept;
+	const float&& GetMaxOfRow(const uint32_t row) const noexcept;
 
 	void Print() const noexcept;
 

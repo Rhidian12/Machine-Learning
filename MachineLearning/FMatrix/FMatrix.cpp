@@ -98,7 +98,7 @@ const float&& FMatrix::GetMax() const noexcept
 	return std::move(max);
 }
 
-const float&& FMatrix::GetMaxOfRow(const float row) const noexcept
+const float&& FMatrix::GetMaxOfRow(const uint32_t row) const noexcept
 {
 	float max{};
 	for (size_t c{}; c < GetNumberOfColumns(); ++c)
