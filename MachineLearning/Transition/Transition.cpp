@@ -14,6 +14,8 @@ Transition::Transition(Node* const pFromNode, Node* const pToNode)
 	m_pToNode->AddTransition(this);
 }
 
+#pragma region RuleOf5
+
 Transition::Transition(const Transition& other) noexcept
 	: m_pFromNode{ other.m_pFromNode }
 	, m_pToNode{ other.m_pToNode }
@@ -44,12 +46,24 @@ Transition& Transition::operator=(Transition&& other) noexcept
 	return *this;
 }
 
-void Transition::Render() const noexcept
+#pragma endregion
+
+void Transition::Render(const float xOffset, const float yOffset) const noexcept
 {
+	using namespace MathUtils;
 	if (!m_IsRendered)
 	{
-		Utils::DrawLine(m_pFromNode->GetPosition(), m_pToNode->GetPosition(), m_Colour);
-		DrawTriangle();
+		Point2f from{ m_pFromNode->GetPosition().x + xOffset, m_pFromNode->GetPosition().y + yOffset };
+		Point2f to{ m_pToNode->GetPosition().x + xOffset, m_pToNode->GetPosition().y + yOffset };
+
+		if (from.x < to.x && from.y > to.y)
+		{
+			from = Point2f{m_pFromNode->GetPosition().x - xOffset, m_pFromNode->GetPosition().y - yOffset };
+			to = Point2f{m_pToNode->GetPosition().x - xOffset, m_pToNode->GetPosition().y - yOffset };
+		}
+
+		Utils::DrawLine(from, to, m_Colour);
+		DrawTriangle(from, to);
 	}
 }
 
@@ -73,23 +87,21 @@ Node* const Transition::GetToNode() const noexcept
 	return m_pToNode;
 }
 
-void Transition::DrawTriangle() const noexcept
+void Transition::DrawTriangle(const MathUtils::Point2f& begin, const MathUtils::Point2f& end) const noexcept
 {
 	using namespace MathUtils;
 
-	const Point2f& fromPoint{ m_pFromNode->GetPosition() };
-	const Point2f& toPoint{ m_pToNode->GetPosition() };
-	const Point2f center{ (fromPoint.x + toPoint.x) / 2.f, (fromPoint.y + toPoint.y) / 2.f };
+	const Point2f center{ (begin.x + end.x) / 2.f, (begin.y + end.y) / 2.f };
 
 	const float triangleSize{ 10.f };
 
-	const float angleBetweenTwoPoints{ atan2f(toPoint.y - fromPoint.y, toPoint.x - fromPoint.x) - ToRadians(90.f) }; // idk why i need to do - 90, but fuck it
+	const float angleBetweenTwoPoints{ atan2f(end.y - begin.y, end.x - begin.x) - ToRadians(90.f) }; // idk why i need to do - 90, but fuck it
 
 	Point2f upPoint{};
 	Point2f leftPoint{ center.x - triangleSize, center.y };
 	Point2f rightPoint{ center.x + triangleSize, center.y };
 
-	if (fromPoint.y < toPoint.y) // we're going up
+	if (begin.y < end.y) // we're going up
 		upPoint = Point2f{ center.x, center.y + triangleSize };
 	else // we're going down
 		upPoint = Point2f{ center.x, center.y + triangleSize };

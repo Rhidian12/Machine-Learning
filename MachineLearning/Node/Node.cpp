@@ -2,6 +2,7 @@
 #include "../Utils/Utils.h"
 #include "../Texture/Texture.h"
 #include "../Renderer/Renderer.h"
+#include "../Transition/Transition.h"
 
 Node::Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index, const float score)
 	: m_Position{ position }
@@ -65,10 +66,23 @@ Node& Node::operator=(Node&& other) noexcept
 	return *this;
 }
 
+#include <iostream>
 void Node::Render() const noexcept
 {
-	Utils::DrawCircle(m_Position, 10, m_Colour);
+	const int radius{ 10 };
+	Utils::DrawCircle(m_Position, radius, m_Colour);
 	Renderer::GetInstance()->Render(m_pTexture, MathUtils::Point2f{ m_Position.x, m_Position.y + m_pTexture->GetHeight() / 2.f });
+
+	int counter{ -1 };
+	for (Transition* const pTransition : m_pTransitions)
+	{
+		if (!pTransition->GetIsRendered())
+		{
+			pTransition->Render(static_cast<float>(counter * radius));
+			pTransition->SetIsRendered(true);
+			counter = 1;
+		}
+	}
 }
 
 void Node::AddTransition(Transition* const pTransition) noexcept

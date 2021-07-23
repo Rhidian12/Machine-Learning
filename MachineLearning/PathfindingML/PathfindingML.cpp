@@ -14,10 +14,19 @@ PathfindingML::PathfindingML()
 	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 250.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 5, 0.f });
 
 	m_Transitions.push_back(new Transition{ m_Nodes[0], m_Nodes[1] });
+	m_Transitions.push_back(new Transition{ m_Nodes[1], m_Nodes[0] });
+
 	m_Transitions.push_back(new Transition{ m_Nodes[0], m_Nodes[2] });
+	m_Transitions.push_back(new Transition{ m_Nodes[2], m_Nodes[0] });
+
 	m_Transitions.push_back(new Transition{ m_Nodes[2], m_Nodes[5] });
+	m_Transitions.push_back(new Transition{ m_Nodes[5], m_Nodes[2] });
+
 	m_Transitions.push_back(new Transition{ m_Nodes[3], m_Nodes[4] });
+	m_Transitions.push_back(new Transition{ m_Nodes[4], m_Nodes[3] });
+
 	m_Transitions.push_back(new Transition{ m_Nodes[1], m_Nodes[3] });
+	m_Transitions.push_back(new Transition{ m_Nodes[3], m_Nodes[1] });
 
 	m_AI = PathfindingAI{ m_Nodes.size(), 0, 4 };
 
@@ -48,7 +57,8 @@ PathfindingML::~PathfindingML()
 
 bool PathfindingML::Update() noexcept
 {
-	return m_AI.Train();
+	//return m_AI.Train();
+	return true;
 }
 
 void PathfindingML::Render() const noexcept
@@ -57,5 +67,5 @@ void PathfindingML::Render() const noexcept
 		pNode->Render();
 
 	for (Transition* const pTransition : m_Transitions)
-		pTransition->Render();
+		pTransition->SetIsRendered(false);
 }

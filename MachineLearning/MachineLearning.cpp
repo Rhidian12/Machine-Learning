@@ -92,7 +92,7 @@ int main(int, char* [])
 			}
 		}
 
-		doContinue = scene.Update();
+		/*doContinue = */scene.Update();
 
 		pRenderer->ClearRenderer(MathUtils::RGBColour{192.f, 192.f, 192.f});
 		scene.Render();
