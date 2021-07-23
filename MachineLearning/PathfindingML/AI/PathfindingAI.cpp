@@ -24,7 +24,7 @@ void PathfindingAI::Train() noexcept
 
 		std::cout << "Iteration: " << m_CurrentIteration++ << ", Score: " << score << std::endl;
 	}
-	else // end of training
+	else if (m_CurrentIteration == m_NrOfIterations) // end of training
 	{
 		// print Q matrix
 		std::cout << "QMatrix:" << std::endl;
