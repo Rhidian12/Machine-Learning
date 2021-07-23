@@ -48,19 +48,21 @@ Transition& Transition::operator=(Transition&& other) noexcept
 
 #pragma endregion
 
-void Transition::Render(const float xOffset, const float yOffset) const noexcept
+void Transition::Render(const int radius) const noexcept
 {
 	using namespace MathUtils;
 	if (!m_IsRendered)
 	{
-		Point2f from{ m_pFromNode->GetPosition().x + xOffset, m_pFromNode->GetPosition().y + yOffset };
-		Point2f to{ m_pToNode->GetPosition().x + xOffset, m_pToNode->GetPosition().y + yOffset };
+		Point2f from{ m_pFromNode->GetPosition().x, m_pFromNode->GetPosition().y };
+		Point2f to{ m_pToNode->GetPosition().x, m_pToNode->GetPosition().y };
 
-		if (from.x < to.x && from.y > to.y)
-		{
-			from = Point2f{m_pFromNode->GetPosition().x - xOffset, m_pFromNode->GetPosition().y - yOffset };
-			to = Point2f{m_pToNode->GetPosition().x - xOffset, m_pToNode->GetPosition().y - yOffset };
-		}
+		Vector2f dir{ to.x - from.x, to.y - from.y };
+		Normalize(dir);
+
+		Vector2f perpendicularDir{ dir.y, -dir.x };
+		const float offset{ static_cast<float>(radius) };
+		from = Point2f{ from.x + perpendicularDir.x * offset, from.y + perpendicularDir.y * offset };
+		to = Point2f{ to.x + perpendicularDir.x * offset, to.y + perpendicularDir.y * offset };
 
 		Utils::DrawLine(from, to, m_Colour);
 		DrawTriangle(from, to);

@@ -64,18 +64,18 @@ Node& Node::operator=(Node&& other) noexcept
 #include <iostream>
 void Node::Render() const noexcept
 {
+	using namespace MathUtils;
+
 	const int radius{ 10 };
 	Utils::DrawCircle(m_Position, radius, m_Colour);
 	Renderer::GetInstance()->Render(m_pTexture, MathUtils::Point2f{ m_Position.x, m_Position.y + m_pTexture->GetHeight() / 2.f });
 
-	int counter{ -1 };
 	for (Transition* const pTransition : m_pTransitions)
 	{
 		if (!pTransition->GetIsRendered())
 		{
-			pTransition->Render(static_cast<float>(counter * radius));
+			pTransition->Render(radius);
 			pTransition->SetIsRendered(true);
-			counter = 1;
 		}
 	}
 }

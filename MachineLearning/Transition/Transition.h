@@ -14,7 +14,7 @@ public:
 	Transition& operator=(const Transition& other) noexcept;
 	Transition& operator=(Transition&& other) noexcept;
 
-	void Render(const float xOffset = 0.f, const float yOffset = 0.f) const noexcept;
+	void Render(const int radius) const noexcept;
 
 	void SetIsRendered(const bool isRendered) noexcept;
 	const bool GetIsRendered() const noexcept;

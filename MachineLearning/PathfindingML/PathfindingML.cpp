@@ -13,6 +13,9 @@ PathfindingML::PathfindingML()
 	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 350.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 4 });
 	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 250.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 5 });
 	m_Nodes.push_back(new Node{ MathUtils::Point2f{400.f, 100.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 6 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{400.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 7 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{500.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 8 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 50.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 9 });
 
 	m_Transitions.push_back(new Transition{ m_Nodes[0], m_Nodes[1] });
 	m_Transitions.push_back(new Transition{ m_Nodes[1], m_Nodes[0] });
@@ -28,6 +31,12 @@ PathfindingML::PathfindingML()
 
 	m_Transitions.push_back(new Transition{ m_Nodes[1], m_Nodes[3] });
 	m_Transitions.push_back(new Transition{ m_Nodes[3], m_Nodes[1] });
+
+	m_Transitions.push_back(new Transition{ m_Nodes[0], m_Nodes[9] });
+	m_Transitions.push_back(new Transition{ m_Nodes[9], m_Nodes[0] });
+
+	m_Transitions.push_back(new Transition{ m_Nodes[1], m_Nodes[7] });
+	m_Transitions.push_back(new Transition{ m_Nodes[7], m_Nodes[1] });
 
 	m_AI = PathfindingAI{ m_Nodes.size(), 0, 4 };
 
@@ -58,7 +67,7 @@ PathfindingML::~PathfindingML()
 
 void PathfindingML::Update() noexcept
 {
-	m_AI.Train();
+	//m_AI.Train();
 }
 
 void PathfindingML::Render() const noexcept
