@@ -62,28 +62,35 @@ bool PathfindingAI::Train() noexcept
 const float&& PathfindingAI::Update() noexcept
 {
 	// Select a random node (FROM)
-	const Node& fromNode{ (*m_pNodes)[rand() % m_pNodes->size()] };
+	Node* const pFromNode{ (*m_pNodes)[rand() % m_pNodes->size()] };
 
 	// select a valid TO node
-	const Node& toNode{ *fromNode.GetTransitions()[rand() % fromNode.GetTransitions().size()]->GetToNode() };
+	//const Node& toNode{ *(fromNode.GetTransitions()[rand() % fromNode.GetTransitions().size()]->GetToNode()) };
+
+	std::vector<Node*> possibleNodes{};
+	for (Transition* pTransition : pFromNode->GetTransitions())
+		if (m_RewardMatrix.Get(pFromNode->GetIndex(), pTransition->GetToNode()->GetIndex()) >= 0.f)
+			possibleNodes.push_back(pTransition->GetToNode());
+
+	Node* const pToNode{ possibleNodes[rand() % possibleNodes.size()] };
 
 	// Calculate the max of row nr [TO NODE INDEX]
 	float max{};
 	for (size_t i{}; i < m_QMatrix.GetNumberOfColumns(); ++i)
-		max += m_QMatrix.Get(toNode.GetIndex(), i);
+		max += m_QMatrix.Get(pToNode->GetIndex(), i);
 
 	// Gather all the columns that have a value equal to max
 	std::vector<uint32_t> columnIndices{};
 	for (size_t i{}; i < m_QMatrix.GetNumberOfColumns(); ++i)
-		if (m_QMatrix.Get(toNode.GetIndex(), i) == max)
+		if (m_QMatrix.Get(pToNode->GetIndex(), i) == max)
 			columnIndices.push_back(i);
 
 	// Get the value from the random cell
-	const float randomValueFromQMatrix{ m_QMatrix.Get(toNode.GetIndex(), columnIndices[rand() % columnIndices.size()]) };
+	const float randomValueFromQMatrix{ m_QMatrix.Get(pToNode->GetIndex(), columnIndices[rand() % columnIndices.size()]) };
 
 	// Update the value for the Q matrix
-	const float qUpdate{ m_RewardMatrix.Get(fromNode.GetIndex(), toNode.GetIndex()) + m_Gamma * randomValueFromQMatrix };
-	m_QMatrix.Set(fromNode.GetIndex(), toNode.GetIndex(), qUpdate);
+	const float qUpdate{ m_RewardMatrix.Get(pFromNode->GetIndex(), pToNode->GetIndex()) + m_Gamma * randomValueFromQMatrix };
+	m_QMatrix.Set(pFromNode->GetIndex(), pToNode->GetIndex(), qUpdate);
 
 	return std::move(100.f * m_QMatrix.GetSum() / m_QMatrix.GetMax());
 }
@@ -93,12 +100,12 @@ void PathfindingAI::SetRewardMatrix(FMatrix&& matrix) noexcept
 	m_RewardMatrix = std::forward<FMatrix>(matrix);
 }
 
-void PathfindingAI::SetNodes(std::vector<Node>* const pNodes) noexcept
+void PathfindingAI::SetNodes(std::vector<Node*>* const pNodes) noexcept
 {
 	m_pNodes = pNodes;
 }
 
-void PathfindingAI::SetTransitions(std::vector<Transition>* const pTransitions) noexcept
+void PathfindingAI::SetTransitions(std::vector<Transition*>* const pTransitions) noexcept
 {
 	m_pTransitions = pTransitions;
 }

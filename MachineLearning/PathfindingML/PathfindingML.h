@@ -10,13 +10,14 @@ class PathfindingML final
 {
 public:
 	PathfindingML();
+	~PathfindingML();
 
 	bool Update() noexcept;
 	void Render() const noexcept;
 
 private:
-	std::vector<Node> m_Nodes{};
-	std::vector<Transition> m_Transitions{};
+	std::vector<Node*> m_Nodes{};
+	std::vector<Transition*> m_Transitions{};
 
 	PathfindingAI m_AI;
 };

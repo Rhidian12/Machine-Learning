@@ -24,6 +24,8 @@ Node::Node(const Node& other) noexcept
 	, m_Colour{ other.m_Colour }
 	, m_Index{ other.m_Index }
 	, m_pTexture{ other.m_pTexture }
+	, m_Score{ other.m_Score }
+	, m_pTransitions{ other.m_pTransitions }
 {
 }
 
@@ -32,7 +34,10 @@ Node::Node(Node&& other) noexcept
 	, m_Colour{ std::move(other.m_Colour) }
 	, m_Index{ std::move(other.m_Index) }
 	, m_pTexture{ std::move(other.m_pTexture) }
+	, m_Score{ std::move(other.m_Score) }
+	, m_pTransitions{ std::move(other.m_pTransitions) }
 {
+	other.m_pTransitions.clear();
 	other.m_pTexture = nullptr;
 }
 
@@ -42,6 +47,8 @@ Node& Node::operator=(const Node& other) noexcept
 	m_Colour = other.m_Colour;
 	m_Index = other.m_Index;
 	m_pTexture = other.m_pTexture;
+	m_Score = other.m_Score;
+	m_pTransitions = other.m_pTransitions;
 	return *this;
 }
 
@@ -51,6 +58,9 @@ Node& Node::operator=(Node&& other) noexcept
 	m_Colour = std::move(other.m_Colour);
 	m_Index = std::move(other.m_Index);
 	m_pTexture = std::move(other.m_pTexture);
+	m_Score = std::move(other.m_Score);
+	m_pTransitions = std::move(other.m_pTransitions);
+	other.m_pTransitions.clear();
 	other.m_pTexture = nullptr;
 	return *this;
 }
@@ -64,7 +74,7 @@ void Node::Render() const noexcept
 void Node::AddTransition(Transition* const pTransition) noexcept
 {
 	const std::vector<Transition*>::const_iterator cIt = std::find(m_pTransitions.cbegin(), m_pTransitions.cend(), pTransition);
-	
+
 	if (cIt == m_pTransitions.cend())
 		m_pTransitions.push_back(pTransition);
 }

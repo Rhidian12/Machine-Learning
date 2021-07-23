@@ -17,8 +17,8 @@ public:
 
 	void SetRewardMatrix(FMatrix&& matrix) noexcept;
 
-	void SetNodes(std::vector<Node>* const nodes) noexcept;
-	void SetTransitions(std::vector<Transition>* const transitions) noexcept;
+	void SetNodes(std::vector<Node*>* const nodes) noexcept;
+	void SetTransitions(std::vector<Transition*>* const transitions) noexcept;
 
 private:
 	FMatrix m_QMatrix;
@@ -32,7 +32,7 @@ private:
 	int m_CurrentIteration;
 	int m_NrOfIterations;
 	
-	std::vector<Node>* m_pNodes;
-	std::vector<Transition>* m_pTransitions;
+	std::vector<Node*>* m_pNodes;
+	std::vector<Transition*>* m_pTransitions;
 };
 
