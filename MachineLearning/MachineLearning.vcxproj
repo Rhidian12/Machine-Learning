@@ -199,7 +199,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     <ClCompile Include="MachineLearning.cpp" />
     <ClCompile Include="Math\MathUtils.cpp" />
     <ClCompile Include="Node\Node.cpp" />
-    <ClCompile Include="PathfindingAI.cpp" />
+    <ClCompile Include="PathfindingML\AI\PathfindingAI.cpp" />
     <ClCompile Include="PathfindingML\PathfindingML.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Texture\Texture.cpp" />
@@ -211,7 +211,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     <ClInclude Include="FMatrix\FMatrix.h" />
     <ClInclude Include="Math\MathUtils.h" />
     <ClInclude Include="Node\Node.h" />
-    <ClInclude Include="PathfindingAI.h" />
+    <ClInclude Include="PathfindingML\AI\PathfindingAI.h" />
     <ClInclude Include="PathfindingML\PathfindingML.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Texture\Texture.h" />
