@@ -10,7 +10,7 @@ class Texture;
 class Node final
 {
 public:
-	Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index, const float score);
+	Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index);
 	~Node();
 
 	Node(const Node& other) noexcept;
@@ -25,14 +25,12 @@ public:
 	const std::vector<Transition*>& GetTransitions() const noexcept;
 
 	const MathUtils::Point2f& GetPosition() const noexcept;
-	const float GetScore() const noexcept;
 	const uint32_t GetIndex() const noexcept;
 
 private:
 	MathUtils::Point2f m_Position;
 	MathUtils::RGBColour m_Colour;
 	uint32_t m_Index;
-	float m_Score;
 
 	Texture* m_pTexture;
 

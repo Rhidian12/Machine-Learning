@@ -7,11 +7,12 @@ PathfindingML::PathfindingML()
 	: m_AI{ 0,0,0 } /*I'm lazy TODO: Make this better, lazy bastard*/
 {
 	m_Nodes.push_back(new Node{ MathUtils::Point2f{200.f, 100.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 0, 0.f });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 1, 40.f });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 1, 0.f });
 	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 2, 0.f });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 250.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 3, 80.f });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 350.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 4, 100.f });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 250.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 3, 0.f });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 350.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 4, 0.f });
 	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 250.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 5, 0.f });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{400.f, 100.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 6, 0.f });
 
 	m_Transitions.push_back(new Transition{ m_Nodes[0], m_Nodes[1] });
 	m_Transitions.push_back(new Transition{ m_Nodes[1], m_Nodes[0] });

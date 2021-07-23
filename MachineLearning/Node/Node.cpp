@@ -4,12 +4,11 @@
 #include "../Renderer/Renderer.h"
 #include "../Transition/Transition.h"
 
-Node::Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index, const float score)
+Node::Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index)
 	: m_Position{ position }
 	, m_Colour{ colour }
 	, m_Index{ index }
 	, m_pTexture{}
-	, m_Score{ score }
 	, m_pTransitions{}
 {
 	m_pTexture = new Texture{ "Data/OswaldLight.ttf", std::to_string(index), 15, m_Colour };
@@ -25,7 +24,6 @@ Node::Node(const Node& other) noexcept
 	, m_Colour{ other.m_Colour }
 	, m_Index{ other.m_Index }
 	, m_pTexture{ other.m_pTexture }
-	, m_Score{ other.m_Score }
 	, m_pTransitions{ other.m_pTransitions }
 {
 }
@@ -35,7 +33,6 @@ Node::Node(Node&& other) noexcept
 	, m_Colour{ std::move(other.m_Colour) }
 	, m_Index{ std::move(other.m_Index) }
 	, m_pTexture{ std::move(other.m_pTexture) }
-	, m_Score{ std::move(other.m_Score) }
 	, m_pTransitions{ std::move(other.m_pTransitions) }
 {
 	other.m_pTransitions.clear();
@@ -48,7 +45,6 @@ Node& Node::operator=(const Node& other) noexcept
 	m_Colour = other.m_Colour;
 	m_Index = other.m_Index;
 	m_pTexture = other.m_pTexture;
-	m_Score = other.m_Score;
 	m_pTransitions = other.m_pTransitions;
 	return *this;
 }
@@ -59,7 +55,6 @@ Node& Node::operator=(Node&& other) noexcept
 	m_Colour = std::move(other.m_Colour);
 	m_Index = std::move(other.m_Index);
 	m_pTexture = std::move(other.m_pTexture);
-	m_Score = std::move(other.m_Score);
 	m_pTransitions = std::move(other.m_pTransitions);
 	other.m_pTransitions.clear();
 	other.m_pTexture = nullptr;
@@ -101,11 +96,6 @@ const std::vector<Transition*>& Node::GetTransitions() const noexcept
 const MathUtils::Point2f& Node::GetPosition() const noexcept
 {
 	return m_Position;
-}
-
-const float Node::GetScore() const noexcept
-{
-	return m_Score;
 }
 
 const uint32_t Node::GetIndex() const noexcept
