@@ -57,7 +57,7 @@ PathfindingML::~PathfindingML()
 
 void PathfindingML::Update() noexcept
 {
-	return m_AI.Train();
+	m_AI.Train();
 }
 
 void PathfindingML::Render() const noexcept
