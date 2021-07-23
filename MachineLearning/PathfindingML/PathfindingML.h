@@ -11,7 +11,7 @@ class PathfindingML final
 public:
 	PathfindingML();
 
-	void Update() noexcept;
+	bool Update() noexcept;
 	void Render() const noexcept;
 
 private:

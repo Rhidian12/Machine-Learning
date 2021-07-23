@@ -16,13 +16,15 @@ PathfindingAI::PathfindingAI(const uint32_t amountOfNodes, const uint32_t startL
 {
 }
 
-void PathfindingAI::Train() noexcept
+bool PathfindingAI::Train() noexcept
 {
 	if (m_CurrentIteration < m_NrOfIterations) // we are still training
 	{
 		const float score{ Update() };
 
 		std::cout << "Iteration: " << m_CurrentIteration++ << ", Score: " << score << std::endl;
+
+		return true;
 	}
 	else // end of training
 	{
@@ -52,6 +54,8 @@ void PathfindingAI::Train() noexcept
 
 		std::cout << std::endl;
 		++m_CurrentIteration;
+
+		return false;
 	}
 }
 
