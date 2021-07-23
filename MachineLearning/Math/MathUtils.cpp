@@ -106,6 +106,11 @@ namespace MathUtils
 		, y{ _y }
 	{
 	}
+	Vector2f::Vector2f(const Point2f& point)
+		: x{ point.x }
+		, y{ point.y }
+	{
+	}
 	Vector2f::Vector2f(const Vector2f& other) noexcept
 		: x{ other.x }
 		, y{ other.y }

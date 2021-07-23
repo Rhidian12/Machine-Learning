@@ -43,7 +43,8 @@ namespace MathUtils
 
 	struct Vector2f final
 	{
-		Vector2f(const float _x = 0.f, const float _y = 0.f);
+		explicit Vector2f(const float _x = 0.f, const float _y = 0.f);
+		explicit Vector2f(const Point2f& point);
 
 		float x, y;
 
