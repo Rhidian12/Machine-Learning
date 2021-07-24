@@ -71,7 +71,7 @@ const float&& PathfindingAI::Update() noexcept
 	Node* const pToNode{ possibleNodes[rand() % possibleNodes.size()] };
 
 	// Calculate the max of row nr [TO NODE INDEX]
-	float maxOfRow{ m_QMatrix.GetMaxOfRow(pToNode->GetIndex()) };
+	const float maxOfRow{ m_QMatrix.GetMaxOfRow(pToNode->GetIndex()) };
 
 	// Gather all the columns that have a value equal to max
 	std::vector<uint32_t> columnIndices{};
