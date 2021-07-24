@@ -61,8 +61,6 @@ const float&& PathfindingAI::Update() noexcept
 	Node* const pFromNode{ (*m_pNodes)[rand() % m_pNodes->size()] };
 
 	// select a valid TO node
-	//const Node& toNode{ *(fromNode.GetTransitions()[rand() % fromNode.GetTransitions().size()]->GetToNode()) };
-
 	std::vector<Node*> possibleNodes{};
 	for (Transition* pTransition : pFromNode->GetTransitions())
 		if (m_RewardMatrix.Get(pFromNode->GetIndex(), pTransition->GetToNode()->GetIndex()) >= 0.f)
