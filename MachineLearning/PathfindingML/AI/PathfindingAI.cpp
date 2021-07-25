@@ -45,9 +45,21 @@ void PathfindingAI::Train() noexcept
 				if (m_QMatrix.Get(location, c) == maxOfRow)
 					columnIndices.push_back(c);
 
+			const uint32_t previousLocation{ location };
+
 			location = columnIndices[rand() % columnIndices.size()];
-			
+
 			std::cout << location << "\t";
+
+			// Colour transition to bright blue
+			for (Transition* pTransition : *m_pTransitions)
+			{
+				if (pTransition->GetFromNode()->GetIndex() == previousLocation && pTransition->GetToNode()->GetIndex() == location)
+				{
+					pTransition->SetColour(MathUtils::RGBColour{ 0.f, 255.f, 255.f });
+					break;
+				}
+			}
 		}
 
 		std::cout << std::endl;
@@ -83,6 +95,19 @@ const float PathfindingAI::Update() noexcept
 	// Update the value for the Q matrix
 	const float qUpdate{ m_RewardMatrix.Get(pFromNode->GetIndex(), pToNode->GetIndex()) + m_Gamma * randomValueFromQMatrix };
 	m_QMatrix.Set(pFromNode->GetIndex(), pToNode->GetIndex(), qUpdate);
+
+	// Update transition colour
+	for (Transition* pTransition : *m_pTransitions)
+	{
+		if (pTransition->GetFromNode() == pFromNode && pTransition->GetToNode() == pToNode)
+		{
+			const MathUtils::RGBColour& currentTransitionColour{ pTransition->GetColour() };
+			MathUtils::RGBColour newColour{ currentTransitionColour.r, qUpdate, currentTransitionColour.b };
+			MathUtils::Clamp(newColour.g, 0.f, 255.f);
+			pTransition->SetColour(newColour);
+			break;
+		}
+	}
 
 	return 100.f * m_QMatrix.GetSum() / m_QMatrix.GetMax();
 }

@@ -4,7 +4,7 @@
 #include "../Renderer/Renderer.h"
 
 PathfindingML::PathfindingML()
-	: m_AI{ 0,0,0 } /*I'm lazy TODO: Make this better, lazy bastard*/
+	: m_AI{ 0,0,0 }
 {
 	MathUtils::RGBColour startColour{ 0.f, 255.f, 0.f };
 	MathUtils::RGBColour standardColour{ 100.f, 100.f, 100.f };
@@ -62,16 +62,16 @@ PathfindingML::PathfindingML()
 
 	m_AI = PathfindingAI{ m_Nodes.size(), 0, 10 };
 
-	FMatrix rewardMatrix{ m_Nodes.size(),m_Nodes.size(), -1.f };
+	FMatrix rewardMatrix{ m_Nodes.size(),m_Nodes.size(), -1.f }; // default initialize the reward matrix with -1.f
 
 	for (size_t r{}; r < rewardMatrix.GetNumberOfRows(); ++r)
 		for (Transition* pTransition : m_Nodes[r]->GetTransitions())
-			rewardMatrix.Set(pTransition->GetFromNode()->GetIndex(), pTransition->GetToNode()->GetIndex(), 0.f);
+			rewardMatrix.Set(pTransition->GetFromNode()->GetIndex(), pTransition->GetToNode()->GetIndex(), 0.f); // set all possible connections to 0.f
 
 	rewardMatrix.Set(3, 10, 100.f); // manually set goal transition to 100.f
 	rewardMatrix.Set(7, 10, 100.f); // manually set goal transition to 100.f
 
-	rewardMatrix.Print(); // for debugging purposes
+	//rewardMatrix.Print(); // for debugging purposes
 
 	m_AI.SetRewardMatrix(std::move(rewardMatrix));
 
