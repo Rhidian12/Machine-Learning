@@ -6,18 +6,23 @@
 PathfindingML::PathfindingML()
 	: m_AI{ 0,0,0 } /*I'm lazy TODO: Make this better, lazy bastard*/
 {
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{200.f, 100.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 0 });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 1 });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 2 });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 250.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 3 });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 350.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 4 });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 250.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 5 });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{400.f, 100.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 6 });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{400.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 7 });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{500.f, 150.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 8 });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 50.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 9 });
-	m_Nodes.push_back(new Node{ MathUtils::Point2f{400.f, 250.f}, MathUtils::RGBColour{100.f, 100.f, 100.f}, 10 });
+	MathUtils::RGBColour startColour{ 0.f, 255.f, 0.f };
+	MathUtils::RGBColour standardColour{ 100.f, 100.f, 100.f };
+	MathUtils::RGBColour endColour{ 255.f, 0.f, 0.f };
 
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{200.f, 100.f},	 startColour,		0 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 150.f},	 standardColour,	1 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 150.f},	 standardColour,	2 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 250.f},	 standardColour,	3 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{300.f, 350.f},	 standardColour,	4 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 250.f},	 standardColour,	5 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{400.f, 100.f},	 standardColour,	6 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{400.f, 150.f},	 standardColour,	7 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{500.f, 150.f},	 standardColour,	8 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{100.f, 50.f},	 standardColour,	9 });
+	m_Nodes.push_back(new Node{ MathUtils::Point2f{400.f, 250.f},	 endColour,			10 });
+
+#pragma region Transitions
 	m_Transitions.push_back(new Transition{ m_Nodes[0], m_Nodes[1] });
 	m_Transitions.push_back(new Transition{ m_Nodes[1], m_Nodes[0] });
 
@@ -53,6 +58,7 @@ PathfindingML::PathfindingML()
 
 	m_Transitions.push_back(new Transition{ m_Nodes[3], m_Nodes[10] });
 	m_Transitions.push_back(new Transition{ m_Nodes[10], m_Nodes[3] });
+#pragma endregion
 
 	m_AI = PathfindingAI{ m_Nodes.size(), 0, 10 };
 
