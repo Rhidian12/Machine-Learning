@@ -79,6 +79,11 @@ const bool Transition::GetIsRendered() const noexcept
 	return m_IsRendered;
 }
 
+void Transition::SetColour(const MathUtils::RGBColour colour) noexcept
+{
+	m_Colour = colour;
+}
+
 Node* const Transition::GetFromNode() const noexcept
 {
 	return m_pFromNode;
@@ -87,6 +92,11 @@ Node* const Transition::GetFromNode() const noexcept
 Node* const Transition::GetToNode() const noexcept
 {
 	return m_pToNode;
+}
+
+const MathUtils::RGBColour& Transition::GetColour() const noexcept
+{
+	return m_Colour;
 }
 
 void Transition::DrawTriangle(const MathUtils::Point2f& begin, const MathUtils::Point2f& end) const noexcept

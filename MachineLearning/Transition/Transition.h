@@ -18,9 +18,11 @@ public:
 
 	void SetIsRendered(const bool isRendered) noexcept;
 	const bool GetIsRendered() const noexcept;
+	void SetColour(const MathUtils::RGBColour colour) noexcept;
 
 	Node* const GetFromNode() const noexcept;
 	Node* const GetToNode() const noexcept;
+	const MathUtils::RGBColour& GetColour() const noexcept;
 
 private:
 	Node* m_pFromNode;
