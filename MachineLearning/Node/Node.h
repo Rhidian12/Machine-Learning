@@ -10,7 +10,7 @@ class Texture;
 class Node final
 {
 public:
-	Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index);
+	Node(MathUtils::Point2f position, MathUtils::RGBColour colour, const uint32_t index);
 	~Node();
 
 	Node(const Node& other) noexcept;

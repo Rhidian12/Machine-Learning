@@ -4,7 +4,7 @@
 #include "../Renderer/Renderer.h"
 #include "../Transition/Transition.h"
 
-Node::Node(MathUtils::Point2f&& position, MathUtils::RGBColour&& colour, const uint32_t index)
+Node::Node(MathUtils::Point2f position, MathUtils::RGBColour colour, const uint32_t index)
 	: m_Position{ position }
 	, m_Colour{ colour }
 	, m_Index{ index }
