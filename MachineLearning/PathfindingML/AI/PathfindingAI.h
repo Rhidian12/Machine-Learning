@@ -13,7 +13,7 @@ public:
 	PathfindingAI(const uint32_t amountOfNodes, const uint32_t startLocation, const uint32_t goal);
 
 	void Train() noexcept;
-	const float&& Update() noexcept;
+	const float Update() noexcept;
 
 	void SetRewardMatrix(FMatrix&& matrix) noexcept;
 

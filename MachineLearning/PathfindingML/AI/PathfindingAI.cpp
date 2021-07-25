@@ -55,7 +55,7 @@ void PathfindingAI::Train() noexcept
 	}
 }
 
-const float&& PathfindingAI::Update() noexcept
+const float PathfindingAI::Update() noexcept
 {
 	// Select a random node (FROM)
 	Node* const pFromNode{ (*m_pNodes)[rand() % m_pNodes->size()] };
@@ -84,7 +84,7 @@ const float&& PathfindingAI::Update() noexcept
 	const float qUpdate{ m_RewardMatrix.Get(pFromNode->GetIndex(), pToNode->GetIndex()) + m_Gamma * randomValueFromQMatrix };
 	m_QMatrix.Set(pFromNode->GetIndex(), pToNode->GetIndex(), qUpdate);
 
-	return std::move(100.f * m_QMatrix.GetSum() / m_QMatrix.GetMax());
+	return 100.f * m_QMatrix.GetSum() / m_QMatrix.GetMax();
 }
 
 void PathfindingAI::SetRewardMatrix(FMatrix&& matrix) noexcept
