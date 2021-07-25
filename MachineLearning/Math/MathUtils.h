@@ -94,14 +94,24 @@ namespace MathUtils
 	};
 
 	template<typename FloatingPoint, typename = std::enable_if_t<std::is_floating_point_v<FloatingPoint>>>
-	constexpr FloatingPoint ToRadians(const FloatingPoint& value)
+	constexpr FloatingPoint ToRadians(const FloatingPoint& value) noexcept
 	{
 		return value * PI / FloatingPoint(180.f);
 	}
 
 	template<typename FloatingPoint, typename = std::enable_if_t<std::is_floating_point_v<FloatingPoint>>>
-	constexpr FloatingPoint ToDegrees(const FloatingPoint& value)
+	constexpr FloatingPoint ToDegrees(const FloatingPoint& value) noexcept
 	{
 		return value * FloatingPoint(180.f) / PI;
+	}
+
+	template<typename Type>
+	constexpr void Clamp(Type& value, const Type& min, const Type& max) noexcept
+	{
+		if (value < min)
+			value = min;
+
+		if (value > max)
+			value = max;
 	}
 }
