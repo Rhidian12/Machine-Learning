@@ -51,7 +51,7 @@ void PathfindingAI::Train() noexcept
 
 			std::cout << location << "\t";
 
-			// Colour transition to bright blue
+			// Colour final path to bright blue
 			for (Transition* pTransition : *m_pTransitions)
 			{
 				if (pTransition->GetFromNode()->GetIndex() == previousLocation && pTransition->GetToNode()->GetIndex() == location)
