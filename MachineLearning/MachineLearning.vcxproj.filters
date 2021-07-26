@@ -51,6 +51,9 @@
     <ClCompile Include="DinoGameML\Dino\Dino.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DinoGameML\Ground\Ground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FMatrix\FMatrix.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DinoGameML\Dino\Dino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DinoGameML\Ground\Ground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -198,6 +198,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     <ClCompile Include="DinoGameML\Dino\Dino.cpp" />
     <ClCompile Include="DinoGameML\DinoGameML.cpp" />
     <ClCompile Include="FMatrix\FMatrix.cpp" />
+    <ClCompile Include="DinoGameML\Ground\Ground.cpp" />
     <ClCompile Include="MachineLearning.cpp" />
     <ClCompile Include="Math\MathUtils.cpp" />
     <ClCompile Include="PathfindingML\Node\Node.cpp" />
@@ -213,6 +214,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     <ClInclude Include="DinoGameML\Dino\Dino.h" />
     <ClInclude Include="DinoGameML\DinoGameML.h" />
     <ClInclude Include="FMatrix\FMatrix.h" />
+    <ClInclude Include="DinoGameML\Ground\Ground.h" />
     <ClInclude Include="Math\MathUtils.h" />
     <ClInclude Include="PathfindingML\Node\Node.h" />
     <ClInclude Include="PathfindingML\AI\PathfindingAI.h" />
