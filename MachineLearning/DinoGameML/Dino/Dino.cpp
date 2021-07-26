@@ -14,6 +14,7 @@ Dino::Dino(const MathUtils::Point2f position, const float speed, const float max
 	, m_JumpSpeed{ 50.f }
 	, m_IsJumping{}
 {
+	m_Position.y += m_Texture.GetHeight();
 }
 
 void Dino::Update(const float dt) noexcept

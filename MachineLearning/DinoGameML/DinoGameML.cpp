@@ -2,8 +2,8 @@
 #include "../Math/MathUtils.h"
 
 DinoGameML::DinoGameML()
-	: m_Ground{ MathUtils::Point2f{0.f, 100.f} }
-	, m_Dino{ MathUtils::Point2f{50.f, 100.f}, 50.f, 150.f, &m_Ground }
+	: m_Ground{ MathUtils::Point2f{0.f, 24.f} }
+	, m_Dino{ MathUtils::Point2f{50.f, 24.f}, 10.f, 10.f, &m_Ground }
 {
 }
 
