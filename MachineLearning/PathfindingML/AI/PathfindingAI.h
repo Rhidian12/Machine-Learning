@@ -2,8 +2,8 @@
 #include "../../Math/MathUtils.h"
 #include "../../FMatrix/FMatrix.h"
 
-#include "../../Node/Node.h"
-#include "../../Transition/Transition.h"
+#include "../Node/Node.h"
+#include "../Transition/Transition.h"
 
 #include <vector>
 
