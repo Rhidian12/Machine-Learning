@@ -75,6 +75,16 @@ namespace MathUtils
 		y *= rhs;
 		return *this;
 	}
+	Point2f Point2f::operator+(const Vector2f& rhs) const noexcept
+	{
+		return Point2f{x + rhs.x, y + rhs.y};
+	}
+	Point2f& Point2f::operator+=(const Vector2f& rhs) noexcept
+	{
+		x += rhs.x;
+		y += rhs.y;
+		return *this;
+	}
 	const bool Point2f::operator<(const Point2f& rhs) const noexcept
 	{
 		return ((x < rhs.x) && (y < rhs.y));

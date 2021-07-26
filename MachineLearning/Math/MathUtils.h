@@ -30,6 +30,8 @@ namespace MathUtils
 		Point2f& operator*=(const Point2f& rhs) noexcept;
 		Point2f operator*(const float rhs) const noexcept;
 		Point2f& operator*=(const float rhs) noexcept;
+		Point2f operator+(const Vector2f& rhs) const noexcept;
+		Point2f& operator+=(const Vector2f& rhs) noexcept;
 		const bool operator<(const Point2f& rhs) const noexcept;
 		const bool operator>(const Point2f& rhs) const noexcept;
 		const bool operator<=(const Point2f& rhs) const noexcept;
