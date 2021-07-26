@@ -32,7 +32,7 @@ void Dino::Update(const float dt) noexcept
 
 	HandleJump(); // Handle (for now) player input
 
-	m_Position += m_Velocity; // Add velocity to position
+	m_Position += m_Velocity * dt; // Add velocity to position
 
 	if (m_Position.y <= m_pGround->GetPosition().y) // are we going through the ground?
 	{
