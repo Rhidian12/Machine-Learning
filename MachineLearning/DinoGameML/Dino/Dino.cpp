@@ -16,7 +16,7 @@ Dino::Dino(const MathUtils::Point2f position, const float speed, const float max
 {
 }
 
-void Dino::Update() noexcept
+void Dino::Update(const float dt) noexcept
 {
 	m_Velocity = MathUtils::Vector2f{}; // reset velocity
 

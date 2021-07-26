@@ -9,7 +9,7 @@ class Dino final
 public:
 	Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround);
 
-	void Update() noexcept;
+	void Update(const float dt) noexcept;
 	void Render() const noexcept;
 
 private:
