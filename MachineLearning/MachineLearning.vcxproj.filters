@@ -24,7 +24,7 @@
     <ClCompile Include="Utils\Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Node\Node.cpp">
+    <ClCompile Include="PathfindingML\Node\Node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -39,7 +39,7 @@
     <ClCompile Include="PathfindingML\PathfindingML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Transition\Transition.cpp">
+    <ClCompile Include="PathfindingML\Transition\Transition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PathfindingML\AI\PathfindingAI.cpp">
@@ -53,7 +53,7 @@
     <ClInclude Include="Utils\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Node\Node.h">
+    <ClInclude Include="PathfindingML\Node\Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="catch.hpp">
@@ -71,7 +71,7 @@
     <ClInclude Include="PathfindingML\PathfindingML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Transition\Transition.h">
+    <ClInclude Include="PathfindingML\Transition\Transition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PathfindingML\AI\PathfindingAI.h">

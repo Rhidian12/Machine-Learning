@@ -1,7 +1,7 @@
 #include "Node.h"
-#include "../Utils/Utils.h"
-#include "../Texture/Texture.h"
-#include "../Renderer/Renderer.h"
+#include "../../Utils/Utils.h"
+#include "../../Texture/Texture.h"
+#include "../../Renderer/Renderer.h"
 #include "../Transition/Transition.h"
 
 Node::Node(MathUtils::Point2f position, MathUtils::RGBColour colour, const uint32_t index)
