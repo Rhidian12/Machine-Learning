@@ -56,8 +56,11 @@ TEST_CASE("Test FMatrix")
 
 #include "Texture/Texture.h"	
 #include "Renderer/Renderer.h"
-#include "PathfindingML/PathfindingML.h"
 #include "Math/MathUtils.h"
+#include "Timer/Timer.h"
+
+#include "PathfindingML/PathfindingML.h"
+#include "DinoGameML/DinoGameML.h"
 
 #include <vld.h>
 
@@ -73,8 +76,10 @@ int main(int, char* [])
 
 	SDL_GetWindowSize(pWindow, nullptr, &MathUtils::ConvertToBottomLeftOrigin::windowHeight);
 
-	PathfindingML scene{};
+	//PathfindingML scene{};
+	DinoGameML scene{};
 
+	Timer* pTimer{ Timer::GetInstance() };
 	bool doContinue{ true };
 	while (doContinue)
 	{
@@ -92,7 +97,9 @@ int main(int, char* [])
 			}
 		}
 
-		scene.Update();
+		pTimer->Update();
+
+		scene.Update(pTimer->GetElapsedSeconds());
 
 		pRenderer->ClearRenderer(MathUtils::RGBColour{192.f, 192.f, 192.f});
 		scene.Render();
@@ -100,6 +107,7 @@ int main(int, char* [])
 	}
 
 	pRenderer->Cleanup();
+	pTimer->Cleanup();
 
 	return 0;
 }
