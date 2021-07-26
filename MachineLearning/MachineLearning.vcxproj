@@ -195,6 +195,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DinoGameML.cpp" />
     <ClCompile Include="FMatrix\FMatrix.cpp" />
     <ClCompile Include="MachineLearning.cpp" />
     <ClCompile Include="Math\MathUtils.cpp" />
@@ -208,6 +209,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="catch.hpp" />
+    <ClInclude Include="DinoGameML.h" />
     <ClInclude Include="FMatrix\FMatrix.h" />
     <ClInclude Include="Math\MathUtils.h" />
     <ClInclude Include="PathfindingML\Node\Node.h" />

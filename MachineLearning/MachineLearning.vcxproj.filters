@@ -45,6 +45,9 @@
     <ClCompile Include="PathfindingML\AI\PathfindingAI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DinoGameML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FMatrix\FMatrix.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PathfindingML\AI\PathfindingAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DinoGameML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
