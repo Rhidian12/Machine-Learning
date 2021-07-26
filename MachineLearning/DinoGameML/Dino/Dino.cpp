@@ -7,7 +7,7 @@
 Dino::Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround)
 	: m_Position{ position }
 	, m_Velocity{ m_Speed, 0.f }
-	, m_Texture{ "../Textures/Dino.png" }
+	, m_Texture{ "DinoGameML/Textures/Dino.png" }
 	, m_pGround{ pGround }
 	, m_Speed{ speed }
 	, m_MaxSpeed{ maxSpeed }

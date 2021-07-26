@@ -3,7 +3,7 @@
 
 Ground::Ground(const MathUtils::Point2f position)
 	: m_Position{ position }
-	, m_Texture{ "../Textures/Ground.png" }
+	, m_Texture{ "DinoGameML/Textures/Ground.png" }
 {
 }
 
