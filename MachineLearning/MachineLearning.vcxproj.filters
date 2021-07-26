@@ -54,7 +54,7 @@
     <ClCompile Include="DinoGameML\Ground\Ground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Timer.cpp">
+    <ClCompile Include="Timer\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,7 +98,7 @@
     <ClInclude Include="DinoGameML\Ground\Ground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
+    <ClInclude Include="Timer\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
