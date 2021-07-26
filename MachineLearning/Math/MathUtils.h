@@ -7,6 +7,7 @@ namespace MathUtils
 {
 	constexpr float PI = 3.14159265358979323846f;
 
+	struct Vector2f;
 	struct Point2f final
 	{
 		explicit Point2f();

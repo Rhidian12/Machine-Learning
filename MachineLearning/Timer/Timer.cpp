@@ -26,12 +26,12 @@ void Timer::Cleanup() noexcept
     m_pInstance = nullptr;
 }
 
-void Timer::Start()
+void Timer::Start() noexcept
 {
 	m_PreviousTimepoint = std::chrono::steady_clock::now();
 }
 
-void Timer::Update()
+void Timer::Update() noexcept
 {
 	m_StartTimepoint = std::chrono::steady_clock::now();
 	m_ElapsedSeconds = std::chrono::duration<float>(m_StartTimepoint - m_PreviousTimepoint).count();
