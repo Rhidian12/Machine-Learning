@@ -156,6 +156,10 @@ namespace MathUtils
 		y /= other;
 		return *this;
 	}
+	Vector2f Vector2f::operator*(const float other) const noexcept
+	{
+		return Vector2f{ x * other, y * other };
+	}
 #pragma endregion
 
 #pragma region RGB

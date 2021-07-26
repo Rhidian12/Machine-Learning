@@ -60,6 +60,7 @@ namespace MathUtils
 #pragma region Operators
 		Vector2f& operator/=(const Vector2f& other) noexcept;
 		Vector2f& operator/=(const float other) noexcept;
+		Vector2f operator*(const float other) const noexcept;
 #pragma endregion
 	};
 
