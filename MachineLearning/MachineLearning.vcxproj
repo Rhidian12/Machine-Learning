@@ -207,6 +207,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Texture\Texture.cpp" />
     <ClCompile Include="PathfindingML\Transition\Transition.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +223,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Texture\Texture.h" />
     <ClInclude Include="PathfindingML\Transition\Transition.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
