@@ -42,7 +42,7 @@ void Renderer::ClearRenderer(const MathUtils::RGBColour& clearColour) noexcept
     SDL_RenderFillRect(m_pSDLRenderer, nullptr);
 }
 
-void Renderer::Render(Texture* pTexture, const MathUtils::Point2f& position) noexcept
+void Renderer::Render(const Texture* const pTexture, const MathUtils::Point2f& position) noexcept
 {
     Utils::Assert(m_pSDLRenderer != nullptr, "Renderer::Render() > Renderer::CreateRenderer() has not been called!");
 

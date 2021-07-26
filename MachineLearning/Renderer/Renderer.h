@@ -16,7 +16,7 @@ public:
 	void CreateRenderer(SDL_Window* const pWindow) noexcept;
 
 	void ClearRenderer(const MathUtils::RGBColour& clearColour) noexcept;
-	void Render(Texture* pTexture, const MathUtils::Point2f& position) noexcept;
+	void Render(const Texture* const pTexture, const MathUtils::Point2f& position) noexcept;
 	void Present() noexcept;
 
 	SDL_Renderer* const GetSDLRenderer() const noexcept;
