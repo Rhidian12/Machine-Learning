@@ -60,6 +60,9 @@
     <ClCompile Include="DinoGameML\Cactus\Cactus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DinoGameML\Camera\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FMatrix\FMatrix.h">
@@ -105,6 +108,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DinoGameML\Cactus\Cactus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DinoGameML\Camera\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
