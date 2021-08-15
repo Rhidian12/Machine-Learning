@@ -85,7 +85,7 @@ const float PathfindingAI::Update() noexcept
 
 	// Gather all the columns that have a value equal to max
 	std::vector<uint32_t> columnIndices{};
-	for (size_t i{}; i < m_QMatrix.GetNumberOfColumns(); ++i)
+	for (uint32_t i{}; i < m_QMatrix.GetNumberOfColumns(); ++i)
 		if (m_QMatrix.Get(pToNode->GetIndex(), i) == maxOfRow)
 			columnIndices.push_back(i);
 

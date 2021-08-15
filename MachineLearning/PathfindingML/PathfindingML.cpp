@@ -60,9 +60,9 @@ PathfindingML::PathfindingML()
 	m_Transitions.push_back(new Transition{ m_Nodes[10], m_Nodes[3] });
 #pragma endregion
 
-	m_AI = PathfindingAI{ m_Nodes.size(), 0, 10 };
+	m_AI = PathfindingAI{ static_cast<uint32_t>(m_Nodes.size()), 0, 10 };
 
-	FMatrix rewardMatrix{ m_Nodes.size(),m_Nodes.size(), -1.f }; // default initialize the reward matrix with -1.f
+	FMatrix rewardMatrix{ static_cast<uint32_t>(m_Nodes.size()),static_cast<uint32_t>(m_Nodes.size()), -1.f }; // default initialize the reward matrix with -1.f
 
 	for (size_t r{}; r < rewardMatrix.GetNumberOfRows(); ++r)
 		for (Transition* pTransition : m_Nodes[r]->GetTransitions())
