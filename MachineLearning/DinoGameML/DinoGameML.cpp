@@ -19,8 +19,10 @@ void DinoGameML::Update(const float dt) noexcept
 void DinoGameML::Render() noexcept
 {
 	m_Camera.Transform(m_Dino.GetAvatar());
-	m_Dino.Render();
-	m_Ground.Render();
-	m_Cactus.Render();
+	{
+		m_Dino.Render();
+		m_Ground.Render();
+		m_Cactus.Render();
+	}
 	m_Camera.PopStack();
 }
