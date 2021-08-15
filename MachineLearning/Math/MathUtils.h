@@ -65,6 +65,23 @@ namespace MathUtils
 #pragma endregion
 	};
 
+	struct Rectf final
+	{
+		Rectf()
+			: leftBottom{}
+			, width{}
+			, height{}
+		{}
+		Rectf(Point2f _leftBottom, float _width, float _height)
+			: leftBottom{ _leftBottom }
+			, width{ _width }
+			, height{ _height }
+		{}
+
+		Point2f leftBottom;
+		float width, height;
+	};
+
 	float Dot(const Vector2f& vectorOne, const Vector2f& vectorTwo) noexcept;
 	float MagnitudeSquared(const Vector2f& vector) noexcept;
 	float Magnitude(const Vector2f& vector) noexcept;
@@ -93,7 +110,7 @@ namespace MathUtils
 
 		Point2f operator()(const Point2f& position) const noexcept
 		{
-			return Point2f{position.x, windowHeight - position.y};
+			return Point2f{ position.x, windowHeight - position.y };
 		}
 	};
 
