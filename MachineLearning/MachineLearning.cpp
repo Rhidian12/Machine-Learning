@@ -64,6 +64,9 @@ TEST_CASE("Test FMatrix")
 
 #include <vld.h>
 
+// I am well aware that global variables are bad, but I am lazy, and don't feel like creating an event system or w/e
+inline bool g_DoContinue{ true };
+
 SDL_Window* InitSDL();
 
 int main(int, char* [])
@@ -80,8 +83,7 @@ int main(int, char* [])
 	DinoGameML scene{};
 
 	Timer* pTimer{ Timer::GetInstance() };
-	bool doContinue{ true };
-	while (doContinue)
+	while (g_DoContinue)
 	{
 		SDL_Event e;
 
@@ -90,7 +92,7 @@ int main(int, char* [])
 			switch (e.type)
 			{
 			case SDL_QUIT:
-				doContinue = false;
+				g_DoContinue = false;
 				break;
 			default:
 				break;

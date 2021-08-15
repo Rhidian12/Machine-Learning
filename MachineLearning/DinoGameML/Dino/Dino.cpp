@@ -5,7 +5,7 @@
 
 #include <SDL.h>
 
-#include <iostream>
+extern bool g_DoContinue;
 
 Dino::Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround, Cactus* const pCactus)
 	: m_Texture{ "DinoGameML/Textures/Dino.png" }
@@ -72,6 +72,6 @@ void Dino::HandleCollisions() noexcept
 
 	if (MathUtils::IsOverlapping(m_Avatar, m_pCactus->GetAvatar()))
 	{
-		std::cout << "HIT" << std::endl;
+		g_DoContinue = false;
 	}
 }
