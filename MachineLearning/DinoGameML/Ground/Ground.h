@@ -10,11 +10,11 @@ public:
 
 	void Render() const noexcept;
 
-	const MathUtils::Point2f& GetPosition() const noexcept;
+	const MathUtils::Rectf& GetHitbox() const noexcept;
 	const Texture& GetTexture() const noexcept;
 
 private:
-	MathUtils::Point2f m_Position;
 	Texture m_Texture;
+	MathUtils::Rectf m_Hitbox;
 };
 

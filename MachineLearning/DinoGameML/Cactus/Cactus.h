@@ -6,11 +6,12 @@
 class Cactus final
 {
 public:
-	Cactus(const MathUtils::Point2f position);
+	Cactus(const MathUtils::Point2f position, const bool isDouble);
 
 	void Render() const noexcept;
 
 private:
 	Texture m_Texture;
-	MathUtils::Point2f m_Position;
+	bool m_IsDouble;
+	MathUtils::Rectf m_Avatar;
 };

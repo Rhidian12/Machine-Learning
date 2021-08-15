@@ -4,18 +4,20 @@
 
 #include <SDL.h>
 
-Dino::Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround)
-	: m_Position{ position }
+Dino::Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround, Cactus* const pCactus)
+	: m_Texture{ "DinoGameML/Textures/Dino.png" }
+	, m_Avatar{ position, m_Texture.GetWidth(), m_Texture.GetHeight() }
 	, m_Velocity{ m_Speed, 0.f }
-	, m_Texture{ "DinoGameML/Textures/Dino.png" }
 	, m_pGround{ pGround }
+	, m_pCactus{ pCactus }
 	, m_Speed{ speed }
 	, m_MaxSpeed{ maxSpeed }
 	, m_JumpSpeed{ 300.f }
 	, m_IsJumping{}
 	, m_Gravity{ 981.f }
+	, m_IsMaxSpeedReached{}
 {
-	m_Position.y += m_Texture.GetHeight();
+	m_Avatar.leftBottom.y += m_Texture.GetHeight();
 }
 
 void Dino::Update(const float dt) noexcept
@@ -27,25 +29,24 @@ void Dino::Update(const float dt) noexcept
 
 	if (m_Speed < m_MaxSpeed)
 		m_Speed += m_MaxSpeed / 100.f; // Increase speed by 1% of max speed
-	else
+	else if (!m_IsMaxSpeedReached) // no point in setting speed to max speed every frame
+	{
 		m_Speed = m_MaxSpeed; // make sure we don't exceed the max speed
+		m_IsMaxSpeedReached = true;
+	}
 
 	m_Velocity.x = m_Speed; // Set horizontal velocity to speed
 
 	HandleJump(); // Handle (for now) player input
 
-	m_Position += m_Velocity * dt; // Add velocity to position
+	m_Avatar.leftBottom += m_Velocity * dt; // Add velocity to position
 
-	if (m_Position.y <= m_pGround->GetPosition().y + m_pGround->GetTexture().GetHeight()) // are we going through the ground?
-	{
-		m_IsJumping = false;
-		m_Position.y = m_pGround->GetPosition().y + m_pGround->GetTexture().GetHeight(); // make sure we can't go through the ground
-	}
+	HandleCollisions();
 }
 
 void Dino::Render() const noexcept
 {
-	Renderer::GetInstance()->Render(&m_Texture, m_Position);
+	Renderer::GetInstance()->Render(&m_Texture, m_Avatar.leftBottom);
 }
 
 void Dino::HandleJump() noexcept
@@ -54,5 +55,15 @@ void Dino::HandleJump() noexcept
 	{
 		m_IsJumping = true;
 		m_Velocity.y += m_JumpSpeed;
+	}
+}
+
+void Dino::HandleCollisions() noexcept
+{
+	const MathUtils::Rectf groundHitbox{ m_pGround->GetHitbox() };
+	if (m_Avatar.leftBottom.y <= groundHitbox.leftBottom.y + groundHitbox.height) // are we going through the ground?
+	{
+		m_IsJumping = false;
+		m_Avatar.leftBottom.y = groundHitbox.leftBottom.y + groundHitbox.height; // make sure we can't go through the ground
 	}
 }

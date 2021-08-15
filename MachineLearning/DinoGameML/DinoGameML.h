@@ -2,6 +2,7 @@
 
 #include "Dino/Dino.h"
 #include "Ground/Ground.h"
+#include "Cactus/Cactus.h"
 
 class DinoGameML final
 {
@@ -13,5 +14,6 @@ public:
 
 private:
 	Ground m_Ground;
+	Cactus m_Cactus;
 	Dino m_Dino;
 };
