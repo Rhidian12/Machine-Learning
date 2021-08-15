@@ -260,4 +260,14 @@ namespace MathUtils
 		newVector /= magnitude;
 		return newVector;
 	}
+	bool IsOverlapping(const Rectf& a, const Rectf& b) noexcept
+	{
+		if (a.leftBottom.x > b.leftBottom.x + b.width || b.leftBottom.x > a.leftBottom.x + a.width)
+			return false;
+
+		if (a.leftBottom.y > b.leftBottom.y + b.height || b.leftBottom.y > a.leftBottom.y + a.height)
+			return false;
+
+		return true;
+	}
 }

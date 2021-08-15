@@ -88,6 +88,8 @@ namespace MathUtils
 	float Normalize(Vector2f& vector) noexcept;
 	Vector2f GetNormalized(const Vector2f& vector) noexcept;
 
+	bool IsOverlapping(const Rectf& a, const Rectf& b) noexcept;
+
 	struct RGBColour final
 	{
 		RGBColour();
