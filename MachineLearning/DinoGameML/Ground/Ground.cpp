@@ -3,7 +3,7 @@
 
 Ground::Ground(const MathUtils::Point2f position)
 	: m_Texture{ "DinoGameML/Textures/Ground.png" }
-	, m_Hitbox{ position, m_Texture.GetWidth(), m_Texture.GetHeight() }
+	, m_Hitbox{ position, static_cast<float>(m_Texture.GetWidth()), static_cast<float>(m_Texture.GetHeight()) }
 {
 }
 

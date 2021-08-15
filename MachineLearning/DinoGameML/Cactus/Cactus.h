@@ -9,6 +9,7 @@ public:
 	Cactus(const MathUtils::Point2f position, const bool isDouble);
 
 	void Render() const noexcept;
+	const MathUtils::Rectf& GetAvatar() const noexcept;
 
 private:
 	Texture m_Texture;

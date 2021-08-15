@@ -1,12 +1,15 @@
 #include "Dino.h"
 #include "../../Renderer/Renderer.h"
 #include "../Ground/Ground.h"
+#include "../Cactus/Cactus.h"
 
 #include <SDL.h>
 
+#include <iostream>
+
 Dino::Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround, Cactus* const pCactus)
 	: m_Texture{ "DinoGameML/Textures/Dino.png" }
-	, m_Avatar{ position, m_Texture.GetWidth(), m_Texture.GetHeight() }
+	, m_Avatar{ position, static_cast<float>(m_Texture.GetWidth()), static_cast<float>(m_Texture.GetHeight()) }
 	, m_Velocity{ m_Speed, 0.f }
 	, m_pGround{ pGround }
 	, m_pCactus{ pCactus }
@@ -28,7 +31,7 @@ void Dino::Update(const float dt) noexcept
 		m_Velocity.y = 0.f; // just set this to 0.f if we're on the ground
 
 	if (m_Speed < m_MaxSpeed)
-		m_Speed += m_MaxSpeed / 100.f; // Increase speed by 1% of max speed
+		m_Speed += m_MaxSpeed / 1000.f; // Increase speed by 0.1% of max speed
 	else if (!m_IsMaxSpeedReached) // no point in setting speed to max speed every frame
 	{
 		m_Speed = m_MaxSpeed; // make sure we don't exceed the max speed
@@ -65,5 +68,10 @@ void Dino::HandleCollisions() noexcept
 	{
 		m_IsJumping = false;
 		m_Avatar.leftBottom.y = groundHitbox.leftBottom.y + groundHitbox.height; // make sure we can't go through the ground
+	}
+
+	if (MathUtils::IsOverlapping(m_Avatar, m_pCactus->GetAvatar()))
+	{
+		std::cout << "HIT" << std::endl;
 	}
 }
