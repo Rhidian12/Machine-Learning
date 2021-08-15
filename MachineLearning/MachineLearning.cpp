@@ -77,10 +77,13 @@ int main(int, char* [])
 
 	pRenderer->CreateRenderer(pWindow);
 
-	SDL_GetWindowSize(pWindow, nullptr, &MathUtils::ConvertToBottomLeftOrigin::windowHeight);
+	int width{}, height{};
+	SDL_GetWindowSize(pWindow, &width, &height);
+
+	MathUtils::ConvertToBottomLeftOrigin::windowHeight = height;
 
 	//PathfindingML scene{};
-	DinoGameML scene{};
+	DinoGameML scene{static_cast<uint32_t>(width), static_cast<uint32_t>(height)};
 
 	Timer* pTimer{ Timer::GetInstance() };
 	while (g_DoContinue)

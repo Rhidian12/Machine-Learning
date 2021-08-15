@@ -48,7 +48,7 @@ namespace Utils
 		SDL_Renderer* const pSDLRenderer{ Renderer::GetInstance()->GetSDLRenderer() };
 		SDL_SetRenderDrawColor(pSDLRenderer, Uint8(colour.r), Uint8(colour.g), Uint8(colour.b), Uint8(colour.a));
 
-		const SDL_Rect sdlRect{ rect.leftBottom.x, MathUtils::ConvertToBottomLeftOrigin{}(rect.leftBottom).y, rect.width, rect.height };
+		const SDL_Rect sdlRect{ int(rect.leftBottom.x), int(MathUtils::ConvertToBottomLeftOrigin{}(rect.leftBottom).y), int(rect.width), int(rect.height) };
 		
 		SDL_RenderDrawRect(pSDLRenderer, &sdlRect);
 	}

@@ -18,7 +18,7 @@ MathUtils::Point2f Camera::Transform(const MathUtils::Rectf& target) noexcept
 	Clamp(camPosition);
 
 	// == Translate The World ==
-	const SDL_Rect rect{ -camPosition.x, -camPosition.y, m_WindowWidth, m_WindowHeight };
+	const SDL_Rect rect{ static_cast<int>(-camPosition.x), static_cast<int>(-camPosition.y), static_cast<int>(m_WindowWidth), static_cast<int>(m_WindowHeight) };
 	SDL_RenderSetViewport(Renderer::GetInstance()->GetSDLRenderer(), &rect);
 
 	// == Draw Camera View For Debugging Purposes ==
