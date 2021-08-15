@@ -3,7 +3,7 @@
 
 DinoGameML::DinoGameML()
 	: m_Ground{ MathUtils::Point2f{0.f, 24.f} }
-	, m_Dino{ MathUtils::Point2f{50.f, 24.f}, 10.f, 10.f, &m_Ground }
+	, m_Dino{ MathUtils::Point2f{50.f, 15.f}, 10.f, 10.f, &m_Ground }
 {
 }
 
