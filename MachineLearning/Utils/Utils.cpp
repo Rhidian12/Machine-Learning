@@ -30,7 +30,7 @@ namespace Utils
 		SDL_Renderer* const pSDLRenderer{ Renderer::GetInstance()->GetSDLRenderer() };
 		SDL_SetRenderDrawColor(pSDLRenderer, Uint8(colour.r), Uint8(colour.g), Uint8(colour.b), Uint8(colour.a));
 		for (float angle{}; angle < angleToDraw; ++angle)
-			SDL_RenderDrawPoint(pSDLRenderer, int(newPos.x + cos(angle) * radius), int(newPos.y + sin(angle) * radius));
+			Assert(SDL_RenderDrawPoint(pSDLRenderer, int(newPos.x + cos(angle) * radius), int(newPos.y + sin(angle) * radius)) == 0, SDL_GetError());
 	}
 
 	void DrawLine(const MathUtils::Point2f& startPos, const MathUtils::Point2f& endPos, const MathUtils::RGBColour& colour) noexcept
@@ -41,7 +41,7 @@ namespace Utils
 		SDL_Renderer* const pSDLRenderer{ Renderer::GetInstance()->GetSDLRenderer() };
 		SDL_SetRenderDrawColor(pSDLRenderer, Uint8(colour.r), Uint8(colour.g), Uint8(colour.b), Uint8(colour.a));
 
-		SDL_RenderDrawLine(pSDLRenderer, int(newStartPos.x), int(newStartPos.y), int(newEndPos.x), int(newEndPos.y));
+		Assert(SDL_RenderDrawLine(pSDLRenderer, int(newStartPos.x), int(newStartPos.y), int(newEndPos.x), int(newEndPos.y) == 0), SDL_GetError());
 	}
 	void DrawRectangle(const MathUtils::Rectf& rect, const MathUtils::RGBColour& colour) noexcept
 	{
@@ -50,6 +50,6 @@ namespace Utils
 
 		const SDL_Rect sdlRect{ int(rect.leftBottom.x), int(MathUtils::ConvertToBottomLeftOrigin{}(rect.leftBottom).y), int(rect.width), int(rect.height) };
 		
-		SDL_RenderDrawRect(pSDLRenderer, &sdlRect);
+		Assert(SDL_RenderDrawRect(pSDLRenderer, &sdlRect) == 0, SDL_GetError());
 	}
 }
