@@ -80,6 +80,11 @@ namespace MathUtils
 
 		Point2f leftBottom;
 		float width, height;
+
+#pragma region operators
+		bool operator==(const Rectf& other) const noexcept;
+		bool operator!=(const Rectf& other) const noexcept;
+#pragma endregion
 	};
 
 	float Dot(const Vector2f& vectorOne, const Vector2f& vectorTwo) noexcept;
@@ -126,6 +131,12 @@ namespace MathUtils
 	constexpr FloatingPoint ToDegrees(const FloatingPoint& value) noexcept
 	{
 		return value * FloatingPoint(180.f) / PI;
+	}
+
+	template<typename FundamentalType, typename = std::enable_if_t<std::is_fundamental_v<FundamentalType>>>
+	constexpr bool AreEqual(const FundamentalType a, const FundamentalType b)
+	{
+		return abs(a - b) <= std::numeric_limits<FundamentalType>::epsilon();
 	}
 
 	template<typename Type>

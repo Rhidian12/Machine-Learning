@@ -103,7 +103,7 @@ namespace MathUtils
 	}
 	const bool Point2f::operator==(const Point2f& rhs) const noexcept
 	{
-		return (((x - rhs.x) <= std::numeric_limits<float>::epsilon()) && ((y - rhs.y) <= std::numeric_limits<float>::epsilon()));
+		return AreEqual(x, rhs.x) && AreEqual(y, rhs.y);
 	}
 	const bool Point2f::operator!=(const Point2f& rhs) const noexcept
 	{
@@ -269,5 +269,20 @@ namespace MathUtils
 			return false;
 
 		return true;
+	}
+	bool Rectf::operator==(const Rectf& other) const noexcept
+	{
+		if (leftBottom != other.leftBottom)
+			return false;
+		if (!AreEqual(width, other.width))
+			return false;
+		if (!AreEqual(height, other.height))
+			return false;
+
+		return true;
+	}
+	bool Rectf::operator!=(const Rectf& other) const noexcept
+	{
+		return !(*this == other);
 	}
 }
