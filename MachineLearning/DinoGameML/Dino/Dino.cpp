@@ -52,6 +52,11 @@ void Dino::Render() const noexcept
 	Renderer::GetInstance()->Render(&m_Texture, m_Avatar.leftBottom);
 }
 
+const MathUtils::Rectf& Dino::GetAvatar() const noexcept
+{
+	return m_Avatar;
+}
+
 void Dino::HandleJump() noexcept
 {
 	if (!m_IsJumping && SDL_GetKeyboardState(nullptr)[SDL_SCANCODE_SPACE])

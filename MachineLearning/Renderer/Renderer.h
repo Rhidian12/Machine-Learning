@@ -5,6 +5,7 @@
 struct SDL_Renderer;
 struct SDL_Window;
 class Texture;
+class Camera;
 
 class Renderer final
 {
@@ -19,6 +20,8 @@ public:
 	void Render(const Texture* const pTexture, const MathUtils::Point2f& position) noexcept;
 	void Present() noexcept;
 
+	void SetCamera(Camera* const pCamera) noexcept;
+
 	SDL_Renderer* const GetSDLRenderer() const noexcept;
 
 private:
@@ -26,6 +29,8 @@ private:
 
 	inline static Renderer* m_pInstance{};
 	SDL_Renderer* m_pSDLRenderer{};
+
+	Camera* m_pCamera{};
 
 	int m_WindowWidth{};
 	int m_WindowHeight{};

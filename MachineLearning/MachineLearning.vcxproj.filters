@@ -60,7 +60,7 @@
     <ClCompile Include="DinoGameML\Cactus\Cactus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DinoGameML\Camera\Camera.cpp">
+    <ClCompile Include="Camera\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,7 +110,7 @@
     <ClInclude Include="DinoGameML\Cactus\Cactus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DinoGameML\Camera\Camera.h">
+    <ClInclude Include="Camera\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

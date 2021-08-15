@@ -2,6 +2,8 @@
 
 #include "../../Math/MathUtils.h"
 
+#include <vector>
+
 class Camera
 {
 public:
@@ -12,11 +14,18 @@ public:
 
 	void SetLevelBoundaries(const MathUtils::Rectf& levelBoundaries) noexcept;
 
+	void PushStack(MathUtils::Point2f offset) noexcept;
+	void PopStack() noexcept;
+
+	const MathUtils::Point2f GetOffset() const noexcept;
+
 private:
-	MathUtils::Point2f Track(const MathUtils::Rectf& target);
-	void Clamp(MathUtils::Point2f& bottomLeftPos) const;
+	MathUtils::Point2f Track(const MathUtils::Rectf& target) noexcept;
+	void Clamp(MathUtils::Point2f& bottomLeftPos);
 
 	MathUtils::Rectf m_LevelBoundaries;
 	uint32_t m_WindowWidth;
 	uint32_t m_WindowHeight;
+
+	std::vector<MathUtils::Rectf> m_Stack;
 };

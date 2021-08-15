@@ -13,6 +13,8 @@ public:
 	void Update(const float dt) noexcept;
 	void Render() const noexcept;
 
+	const MathUtils::Rectf& GetAvatar() const noexcept;
+
 private:
 	void HandleJump() noexcept;
 	void HandleCollisions() noexcept;

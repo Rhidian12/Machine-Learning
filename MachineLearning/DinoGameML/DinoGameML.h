@@ -3,7 +3,7 @@
 #include "Dino/Dino.h"
 #include "Ground/Ground.h"
 #include "Cactus/Cactus.h"
-#include "Camera/Camera.h"
+#include "../Camera/Camera.h"
 
 class DinoGameML final
 {
@@ -11,7 +11,7 @@ public:
 	DinoGameML(const uint32_t windowWidth, const uint32_t windowHeight);
 
 	void Update(const float dt) noexcept;
-	void Render() const noexcept;
+	void Render() noexcept;
 
 private:
 	Ground m_Ground;

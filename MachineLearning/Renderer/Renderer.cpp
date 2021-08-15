@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include "../Utils/Utils.h"
 #include "../Texture/Texture.h"
+#include "../Camera/Camera.h"
 
 #include <SDL.h>
 
@@ -46,7 +47,10 @@ void Renderer::Render(const Texture* const pTexture, const MathUtils::Point2f& p
 {
     Utils::Assert(m_pSDLRenderer != nullptr, "Renderer::Render() > Renderer::CreateRenderer() has not been called!");
 
-    const MathUtils::Point2f convertedPoint{ MathUtils::ConvertToBottomLeftOrigin{}(position) };
+    MathUtils::Point2f convertedPoint{ MathUtils::ConvertToBottomLeftOrigin{}(position) };
+
+    if (m_pCamera)
+        convertedPoint += m_pCamera->GetOffset();
 
     SDL_Rect destRect{};
     destRect.x = int(convertedPoint.x);
@@ -62,6 +66,11 @@ void Renderer::Present() noexcept
     Utils::Assert(m_pSDLRenderer != nullptr, "Renderer::Present() > Renderer::CreateRenderer() has not been called!");
    
     SDL_RenderPresent(m_pSDLRenderer);
+}
+
+void Renderer::SetCamera(Camera* const pCamera) noexcept
+{
+    m_pCamera = pCamera;
 }
 
 SDL_Renderer* const Renderer::GetSDLRenderer() const noexcept
