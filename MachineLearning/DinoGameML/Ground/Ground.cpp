@@ -16,3 +16,8 @@ const MathUtils::Point2f& Ground::GetPosition() const noexcept
 {
 	return m_Position;
 }
+
+const Texture& Ground::GetTexture() const noexcept
+{
+	return m_Texture;
+}

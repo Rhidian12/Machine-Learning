@@ -11,6 +11,7 @@ public:
 	void Render() const noexcept;
 
 	const MathUtils::Point2f& GetPosition() const noexcept;
+	const Texture& GetTexture() const noexcept;
 
 private:
 	MathUtils::Point2f m_Position;

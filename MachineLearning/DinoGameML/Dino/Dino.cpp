@@ -11,18 +11,19 @@ Dino::Dino(const MathUtils::Point2f position, const float speed, const float max
 	, m_pGround{ pGround }
 	, m_Speed{ speed }
 	, m_MaxSpeed{ maxSpeed }
-	, m_JumpSpeed{ 50.f }
+	, m_JumpSpeed{ 300.f }
 	, m_IsJumping{}
+	, m_Gravity{ 981.f }
 {
 	m_Position.y += m_Texture.GetHeight();
 }
 
 void Dino::Update(const float dt) noexcept
 {
-	m_Velocity = MathUtils::Vector2f{}; // reset velocity
-
 	if (m_IsJumping) // if we're in the air
-		m_Velocity.y -= 9.81f; // Apply gravity
+		m_Velocity.y -= m_Gravity * dt; // Apply gravity
+	else
+		m_Velocity.y = 0.f; // just set this to 0.f if we're on the ground
 
 	if (m_Speed < m_MaxSpeed)
 		m_Speed += m_MaxSpeed / 100.f; // Increase speed by 1% of max speed
@@ -35,10 +36,10 @@ void Dino::Update(const float dt) noexcept
 
 	m_Position += m_Velocity * dt; // Add velocity to position
 
-	if (m_Position.y <= m_pGround->GetPosition().y) // are we going through the ground?
+	if (m_Position.y <= m_pGround->GetPosition().y + m_pGround->GetTexture().GetHeight()) // are we going through the ground?
 	{
 		m_IsJumping = false;
-		m_Position.y = m_pGround->GetPosition().y; // make sure we can't go through the ground
+		m_Position.y = m_pGround->GetPosition().y + m_pGround->GetTexture().GetHeight(); // make sure we can't go through the ground
 	}
 }
 

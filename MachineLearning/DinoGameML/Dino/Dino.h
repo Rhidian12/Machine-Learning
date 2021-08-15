@@ -26,4 +26,5 @@ private:
 	float m_MaxSpeed;
 	float m_JumpSpeed;
 	bool m_IsJumping;
+	float m_Gravity;
 };
