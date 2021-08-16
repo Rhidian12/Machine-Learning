@@ -195,6 +195,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DinoGameML\AI\DinoAI.cpp" />
     <ClCompile Include="DinoGameML\CactusManager\CactusManager.cpp" />
     <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="DinoGameML\Cactus\Cactus.cpp" />
@@ -214,6 +215,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf-2.0.15\lib\$(PlatformTarget)\*.dll" "$(O
     <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DinoGameML\AI\DinoAI.h" />
     <ClInclude Include="DinoGameML\CactusManager\CactusManager.h" />
     <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="DinoGameML\Cactus\Cactus.h" />
