@@ -7,12 +7,11 @@
 
 extern bool g_DoContinue;
 
-Dino::Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround, Cactus* const pCactus)
+Dino::Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround)
 	: m_Texture{ "DinoGameML/Textures/Dino.png" }
 	, m_Avatar{ position, static_cast<float>(m_Texture.GetWidth()), static_cast<float>(m_Texture.GetHeight()) }
 	, m_Velocity{ m_Speed, 0.f }
 	, m_pGround{ pGround }
-	, m_pCactus{ pCactus }
 	, m_Speed{ speed }
 	, m_MaxSpeed{ maxSpeed }
 	, m_JumpSpeed{ 300.f }
@@ -23,7 +22,7 @@ Dino::Dino(const MathUtils::Point2f position, const float speed, const float max
 	m_Avatar.leftBottom.y += m_Texture.GetHeight();
 }
 
-void Dino::Update(const float dt) noexcept
+void Dino::Update(const float dt, const std::vector<Cactus>& cacti) noexcept
 {
 	if (m_IsJumping) // if we're in the air
 		m_Velocity.y -= m_Gravity * dt; // Apply gravity
@@ -44,7 +43,7 @@ void Dino::Update(const float dt) noexcept
 
 	m_Avatar.leftBottom += m_Velocity * dt; // Add velocity to position
 
-	HandleCollisions();
+	HandleCollisions(cacti);
 }
 
 void Dino::Render() const noexcept
@@ -57,6 +56,21 @@ const MathUtils::Rectf& Dino::GetAvatar() const noexcept
 	return m_Avatar;
 }
 
+const float Dino::GetSpeed() const noexcept
+{
+	return m_Speed;
+}
+
+const float Dino::GetJumpSpeed() const noexcept
+{
+	return m_JumpSpeed;
+}
+
+const float Dino::GetGravity() const noexcept
+{
+	return m_Gravity;
+}
+
 void Dino::HandleJump() noexcept
 {
 	if (!m_IsJumping && SDL_GetKeyboardState(nullptr)[SDL_SCANCODE_SPACE])
@@ -66,7 +80,7 @@ void Dino::HandleJump() noexcept
 	}
 }
 
-void Dino::HandleCollisions() noexcept
+void Dino::HandleCollisions(const std::vector<Cactus>& cacti) noexcept
 {
 	const MathUtils::Rectf groundHitbox{ m_pGround->GetHitbox() };
 	if (m_Avatar.leftBottom.y <= groundHitbox.leftBottom.y + groundHitbox.height) // are we going through the ground?
@@ -75,8 +89,11 @@ void Dino::HandleCollisions() noexcept
 		m_Avatar.leftBottom.y = groundHitbox.leftBottom.y + groundHitbox.height; // make sure we can't go through the ground
 	}
 
-	if (MathUtils::IsOverlapping(m_Avatar, m_pCactus->GetAvatar()))
+	for (const Cactus& cactus : cacti)
 	{
-		g_DoContinue = false;
+		if (MathUtils::IsOverlapping(m_Avatar, cactus.GetAvatar()))
+		{
+			g_DoContinue = false;
+		}
 	}
 }

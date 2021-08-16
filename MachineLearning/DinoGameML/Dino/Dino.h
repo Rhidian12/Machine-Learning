@@ -3,21 +3,26 @@
 #include "../../Math/MathUtils.h"
 #include "../../Texture/Texture.h"
 
+#include <vector>
+
 class Ground;
 class Cactus;
 class Dino final
 {
 public:
-	Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround, Cactus* const pCactus);
+	Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround);
 
-	void Update(const float dt) noexcept;
+	void Update(const float dt, const std::vector<Cactus>& cacti) noexcept;
 	void Render() const noexcept;
 
 	const MathUtils::Rectf& GetAvatar() const noexcept;
+	const float GetSpeed() const noexcept;
+	const float GetJumpSpeed() const noexcept;
+	const float GetGravity() const noexcept;
 
 private:
 	void HandleJump() noexcept;
-	void HandleCollisions() noexcept;
+	void HandleCollisions(const std::vector<Cactus>& cacti) noexcept;
 
 	Texture m_Texture;
 
@@ -25,7 +30,6 @@ private:
 	MathUtils::Vector2f m_Velocity;
 
 	Ground* m_pGround;
-	Cactus* m_pCactus;
 
 	float m_Speed;
 	float m_MaxSpeed;

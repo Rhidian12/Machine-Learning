@@ -4,6 +4,7 @@
 #include "Ground/Ground.h"
 #include "Cactus/Cactus.h"
 #include "../Camera/Camera.h"
+#include "CactusManager/CactusManager.h"
 
 class DinoGameML final
 {
@@ -15,7 +16,12 @@ public:
 
 private:
 	Ground m_Ground;
-	Cactus m_Cactus;
 	Dino m_Dino;
 	Camera m_Camera;
+	CactusManager m_CactusManager;
+
+	uint32_t m_WindowWidth;
+	uint32_t m_WindowHeight;
+
+	MathUtils::Point2f m_CameraLeftBottom;
 };
