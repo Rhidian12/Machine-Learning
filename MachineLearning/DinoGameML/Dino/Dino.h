@@ -10,13 +10,12 @@ class Cactus;
 class Dino final
 {
 public:
-	Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround);
+	Dino(const MathUtils::Point2f position, Ground* const pGround);
 
 	void Update(const float dt, const std::vector<Cactus>& cacti) noexcept;
 	void Render() const noexcept;
 
 	const MathUtils::Rectf& GetAvatar() const noexcept;
-	const float GetSpeed() const noexcept;
 	const float GetJumpSpeed() const noexcept;
 	const float GetGravity() const noexcept;
 
@@ -31,8 +30,6 @@ private:
 
 	Ground* m_pGround;
 
-	float m_Speed;
-	float m_MaxSpeed;
 	float m_JumpSpeed;
 	bool m_IsJumping;
 	float m_Gravity;

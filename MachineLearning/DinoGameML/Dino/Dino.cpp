@@ -7,13 +7,11 @@
 
 extern bool g_DoContinue;
 
-Dino::Dino(const MathUtils::Point2f position, const float speed, const float maxSpeed, Ground* const pGround)
+Dino::Dino(const MathUtils::Point2f position, Ground* const pGround)
 	: m_Texture{ "DinoGameML/Textures/Dino.png" }
 	, m_Avatar{ position, static_cast<float>(m_Texture.GetWidth()), static_cast<float>(m_Texture.GetHeight()) }
-	, m_Velocity{ m_Speed, 0.f }
+	, m_Velocity{}
 	, m_pGround{ pGround }
-	, m_Speed{ speed }
-	, m_MaxSpeed{ maxSpeed }
 	, m_JumpSpeed{ 300.f }
 	, m_IsJumping{}
 	, m_Gravity{ 981.f }
@@ -28,16 +26,6 @@ void Dino::Update(const float dt, const std::vector<Cactus>& cacti) noexcept
 		m_Velocity.y -= m_Gravity * dt; // Apply gravity
 	else
 		m_Velocity.y = 0.f; // just set this to 0.f if we're on the ground
-
-	if (m_Speed < m_MaxSpeed)
-		m_Speed += m_MaxSpeed / 1000.f; // Increase speed by 0.1% of max speed
-	else if (!m_IsMaxSpeedReached) // no point in setting speed to max speed every frame
-	{
-		m_Speed = m_MaxSpeed; // make sure we don't exceed the max speed
-		m_IsMaxSpeedReached = true;
-	}
-
-	m_Velocity.x = m_Speed; // Set horizontal velocity to speed
 
 	HandleJump(); // Handle (for now) player input
 
@@ -54,11 +42,6 @@ void Dino::Render() const noexcept
 const MathUtils::Rectf& Dino::GetAvatar() const noexcept
 {
 	return m_Avatar;
-}
-
-const float Dino::GetSpeed() const noexcept
-{
-	return m_Speed;
 }
 
 const float Dino::GetJumpSpeed() const noexcept

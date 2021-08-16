@@ -9,6 +9,8 @@ public:
 	Cactus(const MathUtils::Point2f position, const bool isDouble);
 
 	void Render() const noexcept;
+	void Update(const float dt, const float speed) noexcept;
+
 	const MathUtils::Rectf& GetAvatar() const noexcept;
 
 private:

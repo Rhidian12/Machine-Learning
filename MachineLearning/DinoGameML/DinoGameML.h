@@ -24,4 +24,7 @@ private:
 	uint32_t m_WindowHeight;
 
 	MathUtils::Point2f m_CameraLeftBottom;
+
+	float m_Speed;
+	float m_MaxSpeed;
 };

@@ -163,4 +163,10 @@ namespace MathUtils
 		if (value > max)
 			value = max;
 	}
+
+	template<typename Data>
+	constexpr Data Square(const Data& data)
+	{
+		return data * data;
+	}
 }

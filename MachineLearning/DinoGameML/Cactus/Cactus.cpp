@@ -17,6 +17,11 @@ void Cactus::Render() const noexcept
 		Renderer::GetInstance()->Render(&m_Texture, MathUtils::Point2f{ m_Avatar.leftBottom.x + m_Texture.GetWidth(), m_Avatar.leftBottom.y });
 }
 
+void Cactus::Update(const float dt, const float speed) noexcept
+{
+	m_Avatar.leftBottom.x += speed * dt;
+}
+
 const MathUtils::Rectf& Cactus::GetAvatar() const noexcept
 {
 	return m_Avatar;
