@@ -14,6 +14,8 @@ public:
 	void Update(const float dt) noexcept;
 	void Render() noexcept;
 
+	void Reset() noexcept;
+
 private:
 	Ground m_Ground;
 	Dino m_Dino;
@@ -26,5 +28,6 @@ private:
 	MathUtils::Point2f m_CameraLeftBottom;
 
 	float m_Speed;
-	float m_MaxSpeed;
+
+	int m_Score;
 };

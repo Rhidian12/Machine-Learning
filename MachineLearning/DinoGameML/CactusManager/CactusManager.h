@@ -13,6 +13,8 @@ public:
 	void Render() const noexcept;
 	void Update(const MathUtils::Point2f& leftBottom, const MathUtils::Point2f& cameraRightBottom, const float dt, const float speed) noexcept;
 
+	void Reset() noexcept;
+
 	const std::vector<Cactus>& GetCacti() const noexcept;
 
 private:

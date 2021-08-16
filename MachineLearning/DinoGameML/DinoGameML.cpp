@@ -2,6 +2,8 @@
 #include "../Math/MathUtils.h"
 #include "../Renderer/Renderer.h"
 
+#include <iostream>
+
 DinoGameML::DinoGameML(const uint32_t windowWidth, const uint32_t windowHeight)
 	: m_Ground{ MathUtils::Point2f{0.f, 24.f} }
 	, m_Dino{ MathUtils::Point2f{50.f, 15.f}, &m_Ground }
@@ -10,21 +12,27 @@ DinoGameML::DinoGameML(const uint32_t windowWidth, const uint32_t windowHeight)
 	, m_WindowWidth{ windowWidth }
 	, m_WindowHeight{ windowHeight }
 	, m_CameraLeftBottom{}
-	, m_Speed{ 20.f }
-	, m_MaxSpeed{ 200.f }
+	, m_Speed{ 400.f }
+	, m_Score{}
 {
 	Renderer::GetInstance()->SetCamera(&m_Camera);
 }
 
 void DinoGameML::Update(const float dt) noexcept
 {
-	m_Dino.Update(dt, m_CactusManager.GetCacti());
-	m_CactusManager.Update(m_CameraLeftBottom, MathUtils::Point2f{ m_CameraLeftBottom.x + m_WindowWidth, m_CameraLeftBottom.y }, dt, -m_Speed);
+	if (!m_Dino.GetIsDead())
+	{
+		m_Dino.Update(dt, m_CactusManager.GetCacti());
+		m_CactusManager.Update(m_CameraLeftBottom, MathUtils::Point2f{ m_CameraLeftBottom.x + m_WindowWidth, m_CameraLeftBottom.y }, dt, -m_Speed);
 
-	m_Speed += m_MaxSpeed;
-	
-	if (m_Speed >= m_MaxSpeed)
-		m_Speed = m_MaxSpeed;
+		m_Score += static_cast<int>(m_Speed) / 100;
+	}
+	else
+	{
+		std::cout << "Score was: " << m_Score << std::endl;
+
+		Reset();
+	}
 }
 
 void DinoGameML::Render() noexcept
@@ -36,4 +44,12 @@ void DinoGameML::Render() noexcept
 		m_CactusManager.Render();
 	}
 	m_Camera.PopStack();
+}
+
+void DinoGameML::Reset() noexcept
+{
+	m_CactusManager.Reset();
+	m_Dino.Reset();
+	
+	m_Score = 0;
 }

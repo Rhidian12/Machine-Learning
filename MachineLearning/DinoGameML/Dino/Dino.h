@@ -15,9 +15,12 @@ public:
 	void Update(const float dt, const std::vector<Cactus>& cacti) noexcept;
 	void Render() const noexcept;
 
+	void Reset() noexcept;
+
 	const MathUtils::Rectf& GetAvatar() const noexcept;
 	const float GetJumpSpeed() const noexcept;
 	const float GetGravity() const noexcept;
+	const bool GetIsDead() const noexcept;
 
 private:
 	void HandleJump() noexcept;
@@ -33,5 +36,7 @@ private:
 	float m_JumpSpeed;
 	bool m_IsJumping;
 	float m_Gravity;
-	bool m_IsMaxSpeedReached;
+
+	MathUtils::Point2f m_StartPosition;
+	bool m_IsDead;
 };

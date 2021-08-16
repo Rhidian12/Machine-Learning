@@ -26,6 +26,11 @@ void CactusManager::Update(const MathUtils::Point2f& cameraLeftBottom, const Mat
 		cactus.Update(dt, speed);
 }
 
+void CactusManager::Reset() noexcept
+{
+	m_Cacti.clear();
+}
+
 const std::vector<Cactus>& CactusManager::GetCacti() const noexcept
 {
 	return m_Cacti;

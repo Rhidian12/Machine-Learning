@@ -15,7 +15,8 @@ Dino::Dino(const MathUtils::Point2f position, Ground* const pGround)
 	, m_JumpSpeed{ 300.f }
 	, m_IsJumping{}
 	, m_Gravity{ 981.f }
-	, m_IsMaxSpeedReached{}
+	, m_StartPosition{ position }
+	, m_IsDead{}
 {
 	m_Avatar.leftBottom.y += m_Texture.GetHeight();
 }
@@ -39,6 +40,14 @@ void Dino::Render() const noexcept
 	Renderer::GetInstance()->Render(&m_Texture, m_Avatar.leftBottom);
 }
 
+void Dino::Reset() noexcept
+{
+	m_Avatar.leftBottom = m_StartPosition;
+	m_IsJumping = false;
+	m_IsDead = false;
+	m_Velocity = MathUtils::Vector2f{};
+}
+
 const MathUtils::Rectf& Dino::GetAvatar() const noexcept
 {
 	return m_Avatar;
@@ -52,6 +61,11 @@ const float Dino::GetJumpSpeed() const noexcept
 const float Dino::GetGravity() const noexcept
 {
 	return m_Gravity;
+}
+
+const bool Dino::GetIsDead() const noexcept
+{
+	return m_IsDead;
 }
 
 void Dino::HandleJump() noexcept
@@ -76,7 +90,8 @@ void Dino::HandleCollisions(const std::vector<Cactus>& cacti) noexcept
 	{
 		if (MathUtils::IsOverlapping(m_Avatar, cactus.GetAvatar()))
 		{
-			g_DoContinue = false;
+			m_IsDead = true;
+			break;
 		}
 	}
 }
