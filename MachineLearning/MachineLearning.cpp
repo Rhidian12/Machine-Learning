@@ -1,5 +1,6 @@
 #include <iostream>
 
+//#define UNIT_TESTS
 #ifdef UNIT_TESTS
 #include "FMatrix/FMatrix.h"
 
@@ -42,6 +43,15 @@ TEST_CASE("Test FMatrix")
 	FMatrix moveOperatorMatrix{ std::move(copyOperatorMatrix) };
 	REQUIRE(originalMatrix == moveOperatorMatrix);
 	REQUIRE(copyOperatorMatrix.GetNumberOfRows() == 0);
+
+	FMatrix nonSquareMatrix{ 3,1 };
+	REQUIRE(nonSquareMatrix.GetNumberOfRows() == 3);
+	REQUIRE(nonSquareMatrix.GetNumberOfColumns() == 1);
+	
+	nonSquareMatrix.Set(2, 0, 150.f);
+	REQUIRE(nonSquareMatrix.Get(2, 0) == 150.f);
+
+	REQUIRE(nonSquareMatrix.GetSum() == 150.f);
 }
 
 #else
@@ -83,7 +93,7 @@ int main(int, char* [])
 	MathUtils::ConvertToBottomLeftOrigin::windowHeight = height;
 
 	//PathfindingML scene{};
-	DinoGameML scene{static_cast<uint32_t>(width), static_cast<uint32_t>(height)};
+	DinoGameML scene{ static_cast<uint32_t>(width), static_cast<uint32_t>(height) };
 
 	Timer* pTimer{ Timer::GetInstance() };
 	while (g_DoContinue)
@@ -106,7 +116,7 @@ int main(int, char* [])
 
 		scene.Update(pTimer->GetElapsedSeconds());
 
-		pRenderer->ClearRenderer(MathUtils::RGBColour{192.f, 192.f, 192.f});
+		pRenderer->ClearRenderer(MathUtils::RGBColour{ 192.f, 192.f, 192.f });
 		scene.Render();
 		pRenderer->Present();
 	}

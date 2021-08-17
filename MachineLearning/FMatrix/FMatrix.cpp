@@ -69,12 +69,12 @@ void FMatrix::SetAll(const float value) noexcept
 
 const uint32_t FMatrix::GetNumberOfRows() const noexcept
 {
-	return m_Data.size();
+	return static_cast<uint32_t>(m_Data.size());
 }
 
 const uint32_t FMatrix::GetNumberOfColumns() const noexcept
 {
-	return m_Data[0].size();
+	return static_cast<uint32_t>(m_Data[0].size());
 }
 
 const float FMatrix::GetSum() const noexcept
