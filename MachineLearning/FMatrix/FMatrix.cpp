@@ -7,7 +7,7 @@
 FMatrix::FMatrix(const uint32_t rows, const uint32_t cols, const float initValue)
 	: m_Data{}
 {
-	Utils::Assert(rows == cols, "This FMatrix class only supports square matrices!");
+	//Utils::Assert(rows == cols, "This FMatrix class only supports square matrices!");
 
 	m_Data.reserve(rows);
 
@@ -48,7 +48,7 @@ FMatrix& FMatrix::operator=(FMatrix&& other) noexcept
 
 void FMatrix::Set(const uint32_t row, const uint32_t col, const float value) noexcept
 {
-	Utils::Assert(row < m_Data.size() && col < m_Data.size(), "FMatrix::Get() > Index was out of bounds!");
+	Utils::Assert(row < m_Data.size() && col < m_Data.size(), "FMatrix::Set() > Index was out of bounds!");
 
 	m_Data[row][col] = value;
 }
@@ -67,27 +67,27 @@ void FMatrix::SetAll(const float value) noexcept
 			element = value;
 }
 
-const uint32_t&& FMatrix::GetNumberOfRows() const noexcept
+const uint32_t FMatrix::GetNumberOfRows() const noexcept
 {
-	return std::move(m_Data.size());
+	return m_Data.size();
 }
 
-const uint32_t&& FMatrix::GetNumberOfColumns() const noexcept
+const uint32_t FMatrix::GetNumberOfColumns() const noexcept
 {
-	return std::move(m_Data[0].size());
+	return m_Data[0].size();
 }
 
-const float&& FMatrix::GetSum() const noexcept
+const float FMatrix::GetSum() const noexcept
 {
 	float sum{};
 	for (size_t r{}; r < GetNumberOfRows(); ++r)
 		for (size_t c{}; c < GetNumberOfColumns(); ++c)
 			sum += m_Data[r][c];
 
-	return std::move(sum);
+	return sum;
 }
 
-const float&& FMatrix::GetMax() const noexcept
+const float FMatrix::GetMax() const noexcept
 {
 	float max{};
 	for (size_t r{}; r < GetNumberOfRows(); ++r)
@@ -95,17 +95,17 @@ const float&& FMatrix::GetMax() const noexcept
 			if (m_Data[r][c] > max)
 				max = m_Data[r][c];
 
-	return std::move(max);
+	return max;
 }
 
-const float&& FMatrix::GetMaxOfRow(const uint32_t row) const noexcept
+const float FMatrix::GetMaxOfRow(const uint32_t row) const noexcept
 {
 	float max{};
 	for (size_t c{}; c < GetNumberOfColumns(); ++c)
 		if (m_Data[row][c] > max)
 			max = m_Data[row][c];
 
-	return std::move(max);
+	return max;
 }
 
 void FMatrix::Print() const noexcept
@@ -123,8 +123,13 @@ void FMatrix::Print() const noexcept
 
 const bool FMatrix::operator==(const FMatrix& other) const noexcept
 {
-	Utils::Assert(GetNumberOfRows() == other.GetNumberOfRows(), "FMatrix::operator==() > Matrices don't have the same amount of rows!\n");
-	Utils::Assert(GetNumberOfColumns() == other.GetNumberOfColumns(), "FMatrix::operator==() > Matrices don't have the same amount of columns!\n");
+	//Utils::Assert(GetNumberOfRows() == other.GetNumberOfRows(), "FMatrix::operator==() > Matrices don't have the same amount of rows!\n");
+	//Utils::Assert(GetNumberOfColumns() == other.GetNumberOfColumns(), "FMatrix::operator==() > Matrices don't have the same amount of columns!\n");
+
+	if (GetNumberOfRows() != other.GetNumberOfRows())
+		return false;
+	if (GetNumberOfColumns() != other.GetNumberOfColumns())
+		return false;
 
 	for (size_t r{}; r < m_Data.size(); ++r)
 		for (size_t c{}; c < m_Data[r].size(); ++c)
@@ -136,7 +141,7 @@ const bool FMatrix::operator==(const FMatrix& other) const noexcept
 
 const bool FMatrix::operator!=(const FMatrix& other) const noexcept
 {
-	Utils::Assert(GetNumberOfRows() == other.GetNumberOfRows(), "FMatrix::operator!=() > Matrices don't have the same amount of rows!\n");
-	Utils::Assert(GetNumberOfColumns() == other.GetNumberOfColumns(), "FMatrix::operator!=() > Matrices don't have the same amount of columns!\n");
+	//Utils::Assert(GetNumberOfRows() == other.GetNumberOfRows(), "FMatrix::operator!=() > Matrices don't have the same amount of rows!\n");
+	//Utils::Assert(GetNumberOfColumns() == other.GetNumberOfColumns(), "FMatrix::operator!=() > Matrices don't have the same amount of columns!\n");
 	return !(*this == other);
 }

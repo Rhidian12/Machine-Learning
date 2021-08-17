@@ -17,12 +17,12 @@ public:
 
 	void SetAll(const float value) noexcept;
 
-	const uint32_t&& GetNumberOfRows() const noexcept;
-	const uint32_t&& GetNumberOfColumns() const noexcept;
+	const uint32_t GetNumberOfRows() const noexcept;
+	const uint32_t GetNumberOfColumns() const noexcept;
 
-	const float&& GetSum() const noexcept;
-	const float&& GetMax() const noexcept;
-	const float&& GetMaxOfRow(const uint32_t row) const noexcept;
+	const float GetSum() const noexcept;
+	const float GetMax() const noexcept;
+	const float GetMaxOfRow(const uint32_t row) const noexcept;
 
 	void Print() const noexcept;
 
