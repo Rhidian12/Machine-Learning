@@ -46,7 +46,7 @@ FMatrix& FMatrix::operator=(FMatrix&& other) noexcept
 	return *this;
 }
 
-void FMatrix::IncreaseValueInCell(const uint32_t row, const uint32_t col, const float value) noexcept
+void FMatrix::IncreaseValueOfCell(const uint32_t row, const uint32_t col, const float value) noexcept
 {
 	Utils::Assert(row < m_Data.size() && col < m_Data.size(), "FMatrix::Set() > Index was out of bounds!");
 

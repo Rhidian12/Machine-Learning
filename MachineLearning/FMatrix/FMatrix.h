@@ -12,7 +12,7 @@ public:
 	FMatrix& operator=(const FMatrix& other) noexcept;
 	FMatrix& operator=(FMatrix&& other) noexcept;
 
-	void IncreaseValueInCell(const uint32_t row, const uint32_t col, const float value) noexcept;
+	void IncreaseValueOfCell(const uint32_t row, const uint32_t col, const float value) noexcept;
 
 	void Set(const uint32_t row, const uint32_t col, const float value) noexcept;
 	const float Get(const uint32_t row, const uint32_t col) const noexcept;
